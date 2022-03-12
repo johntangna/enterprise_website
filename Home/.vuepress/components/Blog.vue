@@ -1,0 +1,80 @@
+<template>
+  <div class="flex_row">
+    <div
+      class="team"
+      v-for="(item, index) in teamArr"
+      :key="index"
+      :class="{ active: currentIndex == index }"
+      @click="currentIndex = index"
+    >
+      <img :src="item.img" alt="" />
+      <div class="team_content">
+        <strong>{{ item.title }}</strong>
+        <div>
+          <span>{{ item.time }}</span>
+          <a :href="item.link">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Blog",
+  data() {
+    return {
+      teamArr: [
+        { img: "/default_img.png", title: "A", time: "25 July", link: "#" },
+        { img: "/default_img.png", title: "ABC", time: "25 July", link: "#" },
+        { img: "/default_img.png", title: "ABCD", time: "25 July", link: "#" },
+      ],
+      currentIndex: 0,
+      teamActive: "/team_active.png",
+    };
+  },
+};
+</script>
+
+<style lang="stylus" scoped>
+.team {
+  border-radius: 5px;
+  position: relative;
+  border: 1px solid #dfdfdf;
+
+  img {
+    width: 22.5rem;
+    height: 31.1875rem;
+    vertical-align: bottom;
+  }
+
+  .team_content {
+    padding: 1.875rem;
+    background: #fff;
+    border-radius: inherit;
+    text-align: left;
+
+    div {
+      margin-top: 0.9375rem;
+      color: #999;
+      font-size: 0.875rem;
+      text-align: left;
+
+      a {
+        float: right;
+        color: #1754fa;
+      }
+    }
+  }
+}
+
+.active {
+  box-shadow: 0px 4px 11px 0px rgba(192, 192, 192, 0.8);
+
+  .team_content {
+    strong {
+      color: #1754fa;
+    }
+  }
+}
+</style>

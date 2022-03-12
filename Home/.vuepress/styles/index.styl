@@ -1,0 +1,89 @@
+body 
+  padding: 0
+  margin: 0
+  color: #fff
+  overflow-x: hidden
+@media (min-width: $MQMobile)
+  .nav-links a
+    &:hover, &.router-link-active
+      color $textColor
+  .nav-item > a:not(.external)
+    &:hover, &.router-link-active
+      margin-top 0.875px
+      border-bottom 2px solid lighten($accentColor, 8%)
+@media (min-width: $MQMobile)
+  .dropdown-wrapper
+    height 1.8rem
+    &:hover .nav-dropdown,
+    &.open .nav-dropdown
+      // override the inline style.
+      display block !important
+    &.open:blur
+      display none
+    .nav-dropdown
+      background: rgb(0 0 0 / 54%) !important;
+      border none !important
+      left: 50%
+      right: unset !important
+      transform: translatex(-50%)
+.dropdown-wrapper .dropdown-title, .dropdown-wrapper .mobile-dropdown-title
+  font-size: 16px !important
+  color: #fff !important
+.dropdown-wrapper .dropdown-title .arrow, .dropdown-wrapper .mobile-dropdown-title .arrow
+  display: none !important
+.navbar
+  padding: unset !important
+  height: 8.12rem
+  border-bottom: none
+  .links 
+    background-color: transparent !important
+    font-size: 16px !important
+    top: 50% !important
+    transform: translateY(-50%) !important
+    .nav-links .nav-item 
+      margin-left: 3.75rem
+      &:last-child
+        margin-right: 3.75rem
+  .site-name
+    display: none !important
+.page
+  padding-bottom: unset !important
+  .area_title 
+    font-size: 2.5rem
+    margin-bottom: 2.8rem
+  .white_area_title 
+    color:#fff
+  .area_content
+    margin-top: 3rem
+  .content_exhibit
+    color: #000
+    text-align: center
+  .main_padding
+    padding: 5.8rem 21rem 6.2rem
+    position relative
+  .content_padding 
+    padding: 2.9375rem 6.0625rem;
+  .theme-default-content:not(.custom)
+      max-width: none
+      padding: 0
+  .theme-default-content:not(.custom) > *:first-child
+      margin-top: unset
+.flex_row {
+  display: flex
+  justify-content: space-between
+}
+.flex_start {
+  justify-content: flex-start
+}
+.flex_vertical
+  flex-direction: column
+.flex_around
+  justify-content: space-around
+.flex_evently
+  justify-content: space-evenly
+.align_center
+  align-items: center
+.home .footer
+  border-top: none !important
+.page-edit
+  display: none

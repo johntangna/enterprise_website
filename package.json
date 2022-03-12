@@ -1,0 +1,20 @@
+{
+    "name": "onmouse_cn",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "oms:dev": "vuepress dev Home",
+        "oms:build": "vuepress build Home"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "vuepress": "^1.9.7"
+    },
+    "dependencies": {
+        "swiper": "^8.0.7",
+        "vue-amap": "^0.5.10"
+    }
+}
