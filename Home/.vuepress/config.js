@@ -3,7 +3,10 @@ module.exports = {
     head: [
         ["link",
             { rel: "icon", href: "/fav.png" }
-        ]
+        ],
+        // ["script",
+        //     { charset: "utf-8", src: "https://unpkg.com/vue-amap@0.5.10/dist/index.js" }
+        // ]
     ],
     themeConfig: {
         search: false,

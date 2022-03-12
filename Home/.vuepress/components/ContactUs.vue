@@ -27,20 +27,20 @@
 <script>
 import Vue from "vue";
 import VueAMap from "../Amap.js";
-VueAMap.initAMapApiLoader({
-  key: "3056e7967382c1e7a8baded08f3969b3",
-  plugin: [
-    "AMap.Autocomplete",
-    "AMap.PlaceSearch",
-    "AMap.Scale",
-    "AMap.OverView",
-    "AMap.ToolBar",
-    "AMap.MapType",
-    "AMap.PolyEditor",
-    "AMap.CircleEditor",
-  ],
-});
-Vue.use(VueAMap);
+// window.VueAMap.initAMapApiLoader({
+//   key: "3056e7967382c1e7a8baded08f3969b3",
+//   plugin: [
+//     "AMap.Autocomplete",
+//     "AMap.PlaceSearch",
+//     "AMap.Scale",
+//     "AMap.OverView",
+//     "AMap.ToolBar",
+//     "AMap.MapType",
+//     "AMap.PolyEditor",
+//     "AMap.CircleEditor",
+//   ],
+// });
+// Vue.use(window.VueAMap);
 export default {
   name: "ContactUs",
   data() {
@@ -67,6 +67,20 @@ export default {
   mounted() {
     this.center = [119.177538, 34.604303];
     this.position = [119.177538, 34.604303];
+    VueAMap.initAMapApiLoader({
+      key: "3056e7967382c1e7a8baded08f3969b3",
+      plugin: [
+        "AMap.Autocomplete",
+        "AMap.PlaceSearch",
+        "AMap.Scale",
+        "AMap.OverView",
+        "AMap.ToolBar",
+        "AMap.MapType",
+        "AMap.PolyEditor",
+        "AMap.CircleEditor",
+      ],
+    });
+    Vue.use(VueAMap);
   },
 };
 </script>

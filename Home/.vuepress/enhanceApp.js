@@ -3,7 +3,20 @@
 
 // // import styles bundle
 // import "Swiper.css";
-
-// export default ({ Vue }) => {
-//     Vue.use(Swiper)
-// }
+import VueAMap from "vue-amap";
+export default ({ Vue, options, router, siteData, isServer }) => {
+    if (!isServer) {
+        Vue.use(VueAMap)
+    }
+    // Vue.mixin({
+    //     mounted() {
+    //         try {
+    //             import ('vue-amap').then(module => {
+    //                 Vue.use(module.default)
+    //             })
+    //         } catch (error) {
+    //             console.error(error)
+    //         }
+    //     }
+    // })
+}
