@@ -1,5 +1,5 @@
 <template>
-  <div class="flex_row">
+  <div class="flex_row team_team">
     <div
       class="team"
       v-for="(item, index) in teamArr"
@@ -12,7 +12,9 @@
         class="activeImg"
         :style="
           currentIndex == index
-            ? 'background:url(' + teamActive + ') 0 0 no-repeat;'
+            ? 'background:url(' +
+              teamActive +
+              ') 0 0 no-repeat;background-size:100% 100%'
             : ''
         "
       ></div>
@@ -62,7 +64,7 @@ export default {
   }
 
   .activeImg {
-    width: 16.4375rem;
+    width: 100%;
     height: 3.0625rem;
     position: absolute;
     top: 0;

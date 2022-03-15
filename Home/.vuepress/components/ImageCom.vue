@@ -1,5 +1,6 @@
 <template>
-  <banner-bg :width="bgWidth" :height="bgHeight"></banner-bg>
+  <div></div>
+  <!-- <banner-bg :width="bgWidth" :height="bgHeight"></banner-bg> -->
 </template>
 <script>
 import BannerBg from "./BannerBg.vue";

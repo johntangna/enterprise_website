@@ -83,7 +83,75 @@ body
   justify-content: space-evenly
 .align_center
   align-items: center
+.sidebar
+  background: #222b34;
+  border-right: unset
+  z-index: 20
+.nav-links
+  border-bottom: unset !important
 .home .footer
   border-top: none !important
 .page-edit
   display: none
+@media (min-width:1200px) 
+  .desktop_flex
+    display: flex;
+  .flex_shrank 
+    flex: 1;
+@media (max-width: 1200px) 
+  .page
+    .main_padding
+      padding: 20px
+  .pricing_plan
+    &:nth-child(2) 
+      margin: 0 !important
+  .pricing_plan_content
+    display: block
+    .align_center
+      width: auto !important
+  .appraise_block
+    display: block
+    .appraise
+      display: contents
+  .help_inline
+    display: inline-block
+    .right
+      margin-left: unset !important
+  .team_team
+    display: inline-block
+  .blog
+    display: inline-block
+    .team
+      display: inline-block
+  .contact_us
+    display: block
+    .map
+      width: unset !important
+    .submit_form
+      input,textarea
+        width: 100% !important
+        padding: 0.9375rem 0 !important
+  .company_info
+    display: inline-block
+    div
+      text-align: center !important
+    .connect
+      max-width: unset !important
+  .inline_common
+    display: inline-block !important
+@media (max-width:1320px)
+  .navbar .links .nav-links .nav-item
+    margin-left: 0.75rem
+@media (min-width: 1330px) and (max-width:1550px) 
+  .submit_form
+    input,textarea
+      width: 80% !important
+  .team_team
+    .team
+      img
+        width: 12.25rem !important
+  .blog
+    img
+      width: 15.5rem !important
+  .navbar .links .nav-links .nav-item
+    margin-left: 1.75rem

@@ -1,20 +1,22 @@
 <template>
   <div>
-    <div
-      v-for="(tab, index) in tabs"
-      :key="index"
-      :class="['titleClass', { active: currentTab == tab }]"
-      @click="clickTab(tab, index)"
-    >
-      <img
-        :src="
-          currentTab == tab
-            ? contentArr[index].activeImg
-            : contentArr[index].img
-        "
-        alt=""
-      />
-      <span>{{ contentArr[index].text }}</span>
+    <div class="desktop_flex">
+      <div
+        v-for="(tab, index) in tabs"
+        :key="index"
+        :class="['titleClass flex_shrank', { active: currentTab == tab }]"
+        @click="clickTab(tab, index)"
+      >
+        <img
+          :src="
+            currentTab == tab
+              ? contentArr[index].activeImg
+              : contentArr[index].img
+          "
+          alt=""
+        />
+        <span>{{ contentArr[index].text }}</span>
+      </div>
     </div>
     <div class="content_com content_padding">
       <img :src="contentArr[currentIndex].contentImg" alt="" />
@@ -97,7 +99,7 @@ export default {
   vertical-align: middle;
   position: relative;
 
-  & + .titleClass {
+  &+ .titleClass {
     border-left-style: none;
   }
 
@@ -119,11 +121,11 @@ export default {
 
 .content_com {
   box-shadow: 0px 1px 1.25rem 0.375rem rgba(0, 0, 0, 0.2);
-  display: flex;
-  align-items: center;
 
   .content_com_right {
     text-align: left;
+    display: inline-block;
+    vertical-align: middle;
 
     :nth-child(2) {
       margin: 2.1875rem 0;
@@ -135,6 +137,8 @@ export default {
     height: 18.75rem;
     border-radius: 6px;
     margin-right: 1.875rem;
+    vertical-align: middle;
+    object-fit: cover;
   }
 }
 

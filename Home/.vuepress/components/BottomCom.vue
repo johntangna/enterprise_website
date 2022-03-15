@@ -1,11 +1,11 @@
 <template>
-  <div class="bottom" :style="bgStyle">
-    <div>
+  <div class="bottom bottom_com inline_common" :style="bgStyle">
+    <div class="flex_row">
       <a v-for="(item, index) in left" :key="index" :href="item.link">{{
         item.text
       }}</a>
     </div>
-    <div>
+    <div class="flex_row">
       <a href="https://beian.miit.gov.cn/" target="_blank">{{ right }}</a>
     </div>
   </div>
@@ -35,12 +35,13 @@ export default {
 .bottom {
   display: flex;
   align-items: center;
-  width: 1920px;
-  height: 80px;
+  width: 100%;
+  height: auto;
   color: #fff;
   font-size: 16px;
   position: relative;
   bottom: 0;
+  padding: 21px 0;
 
   a {
     color: #fff;
@@ -50,6 +51,7 @@ export default {
   div {
     flex: 1;
     text-align: center;
+    justify-content: center;
   }
 }
 </style>

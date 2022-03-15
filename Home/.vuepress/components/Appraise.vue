@@ -1,5 +1,5 @@
 <template>
-  <div class="flex_row flex_around">
+  <div class="flex_row flex_around appraise_block">
     <img :src="appraise" alt="" />
     <div class="appraise">
       <div class="appraise_time_line">
@@ -108,7 +108,7 @@ export default {
 .content {
   margin-left: 1.875rem;
   text-align: left;
-  width: 28.125rem;
+  max-width: 28.125rem;
 
   div {
     color: #999;

@@ -1,6 +1,6 @@
 <template>
-  <div style="position: absolute">
-    <img src="/banner_bg.png" :Width="width" :Height="height" alt="" />
+  <div class="banner_bg_main">
+    <img src="/banner_bg.png" alt="" />
   </div>
 </template>
 
@@ -17,3 +17,14 @@ export default {
   },
 };
 </script>
+
+<style lang="stylus" scoped>
+.banner_bg_main {
+  position: absolute;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+</style>

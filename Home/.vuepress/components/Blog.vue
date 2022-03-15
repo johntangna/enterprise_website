@@ -1,5 +1,5 @@
 <template>
-  <div class="flex_row">
+  <div class="flex_row blog">
     <div
       class="team"
       v-for="(item, index) in teamArr"

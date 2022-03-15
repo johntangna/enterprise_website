@@ -1,11 +1,18 @@
 <template>
   <!-- Slider main container -->
-  <div class="swiper">
+  <div class="swiper" :style="swiperStyle">
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
       <!-- Slides -->
       <div class="swiper-slide" v-for="(item, index) in itemArr" :key="index">
-        <img :src="item.link" alt="" />
+        <img v-if="item.type == 0" :src="item.link" alt="" />
+        <video
+          v-if="item.type == 1"
+          autoplay
+          loop
+          :src="item.link"
+          muted
+        ></video>
       </div>
     </div>
     <!-- If we need pagination -->
@@ -28,19 +35,33 @@ export default {
   data() {
     return {
       itemArr: [
-        { link: "/swiper1.jpg" },
-        { link: "/swiper2.jpg" },
-        { link: "/swiper3.jpg" },
-        { link: "/swiper4.jpg" },
+        { type: 1, link: "/video.mp4" },
+        { type: 0, link: "/swiper1.jpg" },
+        { type: 0, link: "/swiper2.jpg" },
+        { type: 0, link: "/swiper3.jpg" },
+        { type: 0, link: "/swiper4.jpg" },
       ],
+      swiperStyle: {
+        background: "url('/banner_bg.png')",
+        backgroundSize: "100% 100%",
+      },
     };
   },
   mounted() {
     const swiper = new Swiper(".swiper", {
+      effect: "flips",
+      // creativeEffect: {
+      //   prev: {
+      //     translate: [0, 0, -400],
+      //   },
+      //   next: {
+      //     translate: ["100%", 0, 0],
+      //   },
+      // },
       // Optional parameters
       loop: true,
       autoplay: {
-        delay: 3000,
+        delay: 30000,
       },
       // If we need pagination
       pagination: {
@@ -64,8 +85,17 @@ export default {
 
 <style lang="stylus" scoped>
 .swiper {
-  width: 1920px;
-  height: 896px;
+  width: 100%;
+  padding: 8.125rem 0 0 0;
+  text-align: center;
+
+  img {
+    width: 95%;
+  }
+}
+
+video {
+  width: 90%;
 }
 
 .swiper-scrollbar {

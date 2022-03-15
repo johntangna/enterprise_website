@@ -1,5 +1,5 @@
 <template>
-  <div class="flex_row">
+  <div class="flex_row company_info">
     <div>
       <img :src="serviceImg" alt="" />
       <div class="fontColor">{{ serviceScope }}</div>

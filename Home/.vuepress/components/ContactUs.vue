@@ -1,5 +1,5 @@
 <template>
-  <div class="flex_row">
+  <div class="flex_row contact_us">
     <div class="submit_form">
       <input type="text" placeholder="Name" v-model="name" />
       <input type="text" placeholder="Email" v-model="email" />
@@ -55,12 +55,21 @@ export default {
       zooms: [14, 19],
     };
   },
+  watch: {
+    submit(newV) {
+      if (newV) {
+        this.name = this.email = this.message = "";
+        this.submit = false;
+      }
+    },
+  },
   methods: {
     send() {
       if (this.name == "" && this.email == "" && this.submit == "") {
         alert("请填写姓名、邮箱以及留言");
         return;
       }
+      alert("感谢您宝贵的建议，如有需要，我们将第一时间与您联系！");
       this.submit = true;
     },
   },
@@ -88,9 +97,10 @@ export default {
 <style lang="stylus" scoped>
 .submit_form {
   text-align: left;
+  flex: 1;
 
   input, textarea {
-    width: 34.375rem;
+    width: 85%;
     padding: 0.9375rem 1.875rem;
     display: block;
     border-radius: 0.3125rem;
@@ -126,6 +136,7 @@ export default {
   height: 20.9375rem;
   background: #fff;
   padding: 0.5rem;
+  flex: 1;
 }
 
 ::v-deep .amap-logo, ::v-deep .amap-copyright {

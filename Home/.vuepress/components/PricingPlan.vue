@@ -1,7 +1,7 @@
 <template>
-  <div class="flex_row">
+  <div class="flex_row pricing_plan_content">
     <div
-      class="flex_row flex_vertical align_center"
+      class="flex_row flex_vertical align_center pricing_plan"
       v-for="(item, index) in planArr"
       :key="index"
       :class="{ active: index == currentIndex }"
