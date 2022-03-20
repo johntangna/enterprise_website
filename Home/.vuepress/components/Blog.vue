@@ -1,18 +1,21 @@
 <template>
-  <div class="flex_row blog">
-    <div
-      class="team"
-      v-for="(item, index) in teamArr"
-      :key="index"
-      :class="{ active: currentIndex == index }"
-      @click="currentIndex = index"
-    >
-      <img :src="item.img" alt="" />
-      <div class="team_content">
-        <strong>{{ item.title }}</strong>
-        <div>
-          <span>{{ item.time }}</span>
-          <a :href="item.link">Read More</a>
+  <div>
+    <span class="area_title">{{ title }}</span>
+    <div class="flex_row blog">
+      <div
+        class="team"
+        v-for="(item, index) in blogTeamArr"
+        :key="index"
+        :class="{ active: currentIndex == index }"
+        @click="currentIndex = index"
+      >
+        <img :src="item.contentImg" alt="" />
+        <div class="team_content">
+          <strong>{{ item.title }}</strong>
+          <div>
+            <span>{{ item.content }}</span>
+            <a :href="item.link">Read More</a>
+          </div>
         </div>
       </div>
     </div>
@@ -24,14 +27,28 @@ export default {
   name: "Blog",
   data() {
     return {
-      teamArr: [
-        { img: "/default_img.png", title: "A", time: "25 July", link: "#" },
-        { img: "/default_img.png", title: "ABC", time: "25 July", link: "#" },
-        { img: "/default_img.png", title: "ABCD", time: "25 July", link: "#" },
-      ],
+      blogTeamArr: [],
       currentIndex: 0,
       teamActive: "/team_active.png",
+      title: "",
     };
+  },
+  methods: {
+    updateData(data) {
+      this.blogTeamArr = data.arr;
+      this.title = data.title;
+    },
+  },
+  watch: {
+    pageData: {
+      handler(newV) {
+        this.updateData(newV.blogTeamArr);
+      },
+      deep: true,
+    },
+  },
+  mounted() {
+    this.updateData(this.pageData.blogTeamArr);
   },
 };
 </script>

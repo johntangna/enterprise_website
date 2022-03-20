@@ -1,26 +1,29 @@
 <template>
-  <div class="flex_row team_team">
-    <div
-      class="team"
-      v-for="(item, index) in teamArr"
-      :key="index"
-      :class="{ active: currentIndex == index }"
-      @click="currentIndex = index"
-    >
-      <img :src="item.img" alt="" />
+  <div>
+    <span class="area_title">{{ title }}</span>
+    <div class="flex_row team_team">
       <div
-        class="activeImg"
-        :style="
-          currentIndex == index
-            ? 'background:url(' +
-              teamActive +
-              ') 0 0 no-repeat;background-size:100% 100%'
-            : ''
-        "
-      ></div>
-      <div class="team_content">
-        <strong>{{ item.name }}</strong>
-        <div>{{ item.job }}</div>
+        class="team"
+        v-for="(item, index) in teamArr"
+        :key="index"
+        :class="{ active: currentIndex == index }"
+        @click="currentIndex = index"
+      >
+        <img :src="item.contentImg" alt="" />
+        <div
+          class="activeImg"
+          :style="
+            currentIndex == index
+              ? 'background:url(' +
+                teamActive +
+                ') 0 0 no-repeat;background-size:100% 100%'
+              : ''
+          "
+        ></div>
+        <div class="team_content">
+          <strong>{{ item.title }}</strong>
+          <div>{{ item.content }}</div>
+        </div>
       </div>
     </div>
   </div>
@@ -39,15 +42,28 @@ export default {
   },
   data() {
     return {
-      teamArr: [
-        { img: "/default_img.png", name: "A", job: "A" },
-        { img: "/default_img.png", name: "AB", job: "AB" },
-        { img: "/default_img.png", name: "ABC", job: "ABC" },
-        { img: "/default_img.png", name: "ABCD", job: "ABCD" },
-      ],
+      teamArr: [],
       currentIndex: 0,
       teamActive: "/team_active.png",
+      title: "",
     };
+  },
+  watch: {
+    pageData: {
+      handler(v) {
+        this.updateData(v.teamArr);
+      },
+      deep: true,
+    },
+  },
+  methods: {
+    updateData(data) {
+      this.teamArr = data.arr;
+      this.title = data.title;
+    },
+  },
+  mounted() {
+    this.updateData(this.pageData.teamArr);
   },
 };
 </script>

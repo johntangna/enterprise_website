@@ -1,25 +1,28 @@
 <template>
-  <div class="flex_row contact_us">
-    <div class="submit_form">
-      <input type="text" placeholder="Name" v-model="name" />
-      <input type="text" placeholder="Email" v-model="email" />
-      <textarea placeholder="Message" rows="8" v-model="message" />
-      <button @click="send">Send Message</button>
-    </div>
-    <div class="map">
-      <el-amap
-        class="amap-box"
-        :vid="'amap-vue'"
-        :center="center"
-        :zooms="zooms"
-      >
-        <el-amap-marker
-          :position="position"
-          :title="'欧美斯科技发展集团有限公司'"
-          :icon="'../marker.png'"
-          :offset="offset"
-        ></el-amap-marker>
-      </el-amap>
+  <div>
+    <span class="area_title">{{ title }}</span>
+    <div class="flex_row contact_us">
+      <div class="submit_form">
+        <input type="text" placeholder="Name" v-model="name" />
+        <input type="text" placeholder="Email" v-model="email" />
+        <textarea placeholder="Message" rows="8" v-model="message" />
+        <button @click="send">Send Message</button>
+      </div>
+      <div class="map">
+        <el-amap
+          class="amap-box"
+          :vid="'amap-vue'"
+          :center="center"
+          :zooms="zooms"
+        >
+          <el-amap-marker
+            :position="position"
+            :title="'欧美斯科技发展集团有限公司'"
+            :icon="'../marker.png'"
+            :offset="offset"
+          ></el-amap-marker>
+        </el-amap>
+      </div>
     </div>
   </div>
 </template>
@@ -53,6 +56,7 @@ export default {
       position: [],
       offset: [-35, -60],
       zooms: [14, 19],
+      title: "",
     };
   },
   watch: {
@@ -61,6 +65,12 @@ export default {
         this.name = this.email = this.message = "";
         this.submit = false;
       }
+    },
+    pageData: {
+      handler(newV) {
+        this.updateData(newV.contactUs);
+      },
+      deep: true,
     },
   },
   methods: {
@@ -72,23 +82,29 @@ export default {
       alert("感谢您宝贵的建议，如有需要，我们将第一时间与您联系！");
       this.submit = true;
     },
+    updateData(data) {
+      this.title = data.title;
+    },
   },
   mounted() {
+    this.updateData(this.pageData.contactUs);
     this.center = [119.177538, 34.604303];
     this.position = [119.177538, 34.604303];
-    VueAMap.initAMapApiLoader({
-      key: "3056e7967382c1e7a8baded08f3969b3",
-      plugin: [
-        "AMap.Autocomplete",
-        "AMap.PlaceSearch",
-        "AMap.Scale",
-        "AMap.OverView",
-        "AMap.ToolBar",
-        "AMap.MapType",
-        "AMap.PolyEditor",
-        "AMap.CircleEditor",
-      ],
-    });
+    try {
+      VueAMap.initAMapApiLoader({
+        key: "3056e7967382c1e7a8baded08f3969b3",
+        plugin: [
+          "AMap.Autocomplete",
+          "AMap.PlaceSearch",
+          "AMap.Scale",
+          "AMap.OverView",
+          "AMap.ToolBar",
+          "AMap.MapType",
+          "AMap.PolyEditor",
+          "AMap.CircleEditor",
+        ],
+      });
+    } catch (error) {}
     Vue.use(VueAMap);
   },
 };

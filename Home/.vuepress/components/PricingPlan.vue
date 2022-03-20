@@ -1,21 +1,24 @@
 <template>
-  <div class="flex_row pricing_plan_content">
-    <div
-      class="flex_row flex_vertical align_center pricing_plan"
-      v-for="(item, index) in planArr"
-      :key="index"
-      :class="{ active: index == currentIndex }"
-      @click="currentIndex = index"
-    >
-      <img
-        :src="index == currentIndex ? item.activeImg : item.img"
-        :width="width"
-        :height="height"
-        alt=""
-      />
-      <strong>{{ item.title }}</strong>
-      <span>{{ item.content }}</span>
-      <button>Purchase</button>
+  <div>
+    <span class="area_title">{{ title }}</span>
+    <div class="flex_row pricing_plan_content">
+      <div
+        class="flex_row flex_vertical align_center pricing_plan"
+        v-for="(item, index) in planArr"
+        :key="index"
+        :class="{ active: index == currentIndex }"
+        @click="currentIndex = index"
+      >
+        <img
+          :src="index == currentIndex ? item.bg_activeImg : item.bg_img"
+          :width="width"
+          :height="height"
+          alt=""
+        />
+        <strong>{{ item.title }}</strong>
+        <span>{{ item.content }}</span>
+        <button>Purchase</button>
+      </div>
     </div>
   </div>
 </template>
@@ -33,28 +36,27 @@ export default {
   },
   data() {
     return {
-      planArr: [
-        {
-          img: "/plan1.png",
-          activeImg: "/plan1_active.png",
-          title: "Basic",
-          content: "content1",
-        },
-        {
-          img: "/plan2.png",
-          activeImg: "/plan2_active.png",
-          title: "Standard",
-          content: "content2",
-        },
-        {
-          img: "/plan3.png",
-          activeImg: "/plan3_active.png",
-          title: "Premium",
-          content: "content3",
-        },
-      ],
+      planArr: [],
       currentIndex: 1,
+      title: "",
     };
+  },
+  watch: {
+    pageData: {
+      handler(v) {
+        this.updateData(v.planArr);
+      },
+      deep: true,
+    },
+  },
+  methods: {
+    updateData(data) {
+      this.planArr = data.arr;
+      this.title = data.title;
+    },
+  },
+  mounted() {
+    this.updateData(this.pageData.planArr);
   },
 };
 </script>

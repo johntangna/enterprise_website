@@ -1,20 +1,23 @@
 <template>
-  <div class="inline_row">
-    <div
-      v-for="(item, index) in evaluateArr"
-      :key="index"
-      class="inline_row align_center"
-    >
-      <div>
-        <img :src="item.img" alt="" :width="width" :height="height" />
-      </div>
-      <div>
-        <span>{{ item.title }}</span>
-      </div>
-      <div>
-        <span>
-          {{ item.content }}
-        </span>
+  <div>
+    <span class="area_title white_area_title">{{ title }}</span>
+    <div class="inline_row">
+      <div
+        v-for="(item, index) in evaluateArr"
+        :key="index"
+        class="inline_row align_center"
+      >
+        <div>
+          <img :src="item.bg_img" alt="" :width="width" :height="height" />
+        </div>
+        <div>
+          <span>{{ item.title }}</span>
+        </div>
+        <div>
+          <span>
+            {{ item.content }}
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -33,27 +36,26 @@ export default {
   },
   data() {
     return {
-      evaluateArr: [
-        {
-          img: "/evaluate_left.png",
-          title: "17,354+ Happy Customer",
-          content:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspen",
-        },
-        {
-          img: "/evaluate_center.png",
-          title: "135+ Got Award",
-          content:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspen",
-        },
-        {
-          img: "/evaluate_right.png",
-          title: "2,45,000+ Follower",
-          content:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspen",
-        },
-      ],
+      evaluateArr: [],
+      title: "",
     };
+  },
+  watch: {
+    pageData: {
+      handler(v) {
+        this.updateDate(v.evaluateArr);
+      },
+      deep: true,
+    },
+  },
+  methods: {
+    updateDate(data) {
+      this.evaluateArr = data.arr;
+      this.title = data.title;
+    },
+  },
+  mounted() {
+    this.updateDate(this.pageData.evaluateArr);
   },
 };
 </script>
@@ -62,6 +64,7 @@ export default {
 .inline_row {
   display: inline-block;
   text-align: center;
+  vertical-align: middle;
 
   :nth-child(2) {
     padding: 0 3.125rem;

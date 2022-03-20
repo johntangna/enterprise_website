@@ -1,22 +1,25 @@
 <template>
-  <div class="flex_row flex_around appraise_block">
-    <img :src="appraise" alt="" />
-    <div class="appraise">
-      <div class="appraise_time_line">
-        <div
-          class="qa_line"
-          v-for="(item, index) in qaArr"
-          :key="index"
-          :class="{ active: currentIndex == index }"
-          @click="currentIndex = index"
-        ></div>
+  <div>
+    <span class="area_title">{{ title }}</span>
+    <div class="flex_row flex_around appraise_block">
+      <img :src="appraise" alt="" />
+      <div class="appraise">
+        <div class="appraise_time_line">
+          <div
+            class="qa_line"
+            v-for="(item, index) in qaArr"
+            :key="index"
+            :class="{ active: currentIndex == index }"
+            @click="currentIndex = index"
+          ></div>
+        </div>
       </div>
-    </div>
-    <div class="flex_row align_center">
-      <img :src="icon" :width="width" :height="height" alt="" />
-      <div class="content">
-        <div>{{ qaArr[currentIndex].content }}</div>
-        <strong>{{ qaArr[currentIndex].name }}</strong>
+      <div class="flex_row align_center">
+        <img :src="icon" :width="width" :height="height" alt="" />
+        <div class="content">
+          <div>{{ qaArr[currentIndex].content }}</div>
+          <strong>{{ qaArr[currentIndex].title }}</strong>
+        </div>
       </div>
     </div>
   </div>
@@ -38,16 +41,32 @@ export default {
       appraise: "/appraise.png",
       icon: "/appraise_icon.png",
       qaArr: [
-        { content: "content1", name: "somebody1" },
-        { content: "content2", name: "somebody2" },
-        { content: "content3", name: "somebody3" },
-        { content: "content4", name: "somebody4" },
+        {
+          content: "",
+          title: "",
+        },
       ],
       currentIndex: 0,
       setInterval: null,
+      title: "",
     };
   },
+  methods: {
+    updateData(data) {
+      this.qaArr = data.arr;
+      this.title = data.title;
+    },
+  },
+  watch: {
+    pageData: {
+      handler(newV) {
+        this.updateData(newV.qaArr);
+      },
+      deep: true,
+    },
+  },
   mounted() {
+    this.updateData(this.pageData.qaArr);
     this.setInterval = setInterval(() => {
       if (this.currentIndex == this.qaArr.length - 1) {
         this.currentIndex = 0;
@@ -114,5 +133,9 @@ export default {
     color: #999;
     margin-bottom: 1.875rem;
   }
+}
+
+.area_title {
+  color: #000;
 }
 </style>

@@ -1,21 +1,25 @@
 <template>
   <div class="flex_row company_info">
     <div>
-      <img :src="serviceImg" alt="" />
-      <div class="fontColor">{{ serviceScope }}</div>
+      <img :src="companyInfo.contentImg" alt="" />
+      <div class="fontColor">{{ companyInfo.content }}</div>
     </div>
     <div>
-      <strong>{{ linkTitle }}</strong>
-      <div class="linkText" v-for="(item, index) in linkArr" :key="index">
+      <strong>{{ companyInfo.linkTitle }}</strong>
+      <div
+        class="linkText"
+        v-for="(item, index) in companyInfo.linkArr"
+        :key="index"
+      >
         <a :href="item.link" target="_blank">{{ item.text }}</a>
       </div>
     </div>
     <div class="connect">
-      <strong>{{ connectTitle }}</strong>
-      <div v-for="(item, index) in connectArr" :key="index">
-        <span class="fontColor">{{ item.text }}</span>
+      <strong>{{ companyInfo.connectTitle }}</strong>
+      <div v-for="(item, index) in companyInfo.connectArr" :key="index">
+        <span class="fontColor">{{ item.title }}</span>
       </div>
-      <img :src="connectImg" alt="" />
+      <img :src="companyInfo.connectImg" alt="" />
     </div>
   </div>
 </template>
@@ -25,25 +29,24 @@ export default {
   name: "CompanyInfo",
   data() {
     return {
-      serviceScope:
-        "我们主要营业，以及主要经营产品，有什么问题可以咨询我们的，我们都竭力为你服务",
-      serviceImg: "/widget_logo.png",
-      linkTitle: "Usefull Links",
-      linkArr: [
-        { text: "About us", link: "#" },
-        { text: "Team", link: "#" },
-        { text: "Career", link: "#" },
-        { text: "Services", link: "#" },
-        { text: "Contact", link: "#" },
-      ],
-      connectTitle: "Connect",
-      connectArr: [
-        { text: "江苏省连云港市海州区市民路2号" },
-        { text: "info@onmouse.cn" },
-        { text: "114" },
-      ],
-      connectImg: "/widget_icon.png",
+      companyInfo: {},
     };
+  },
+  methods: {
+    updateData(data) {
+      this.companyInfo = data;
+    },
+  },
+  watch: {
+    pageData: {
+      handler(newV) {
+        this.updateData(newV.companyInfo);
+      },
+      deep: true,
+    },
+  },
+  mounted() {
+    this.updateData(this.pageData.companyInfo);
   },
 };
 </script>

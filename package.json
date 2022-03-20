@@ -12,9 +12,12 @@
     "license": "ISC",
     "devDependencies": {
         "glob-parent": "^6.0.2",
+        "querystring": "^0.2.1",
         "vuepress": "^1.9.7"
     },
     "dependencies": {
+        "axios": "^0.26.1",
+        "qs": "^6.10.3",
         "swiper": "^8.0.7",
         "vue-amap": "^0.5.10"
     }

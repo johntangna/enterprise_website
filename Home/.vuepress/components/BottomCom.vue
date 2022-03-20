@@ -1,12 +1,17 @@
 <template>
   <div class="bottom bottom_com inline_common" :style="bgStyle">
     <div class="flex_row">
-      <a v-for="(item, index) in left" :key="index" :href="item.link">{{
-        item.text
-      }}</a>
+      <a
+        v-for="(item, index) in BottomCom.arr"
+        :key="index"
+        :href="item.link"
+        >{{ item.title }}</a
+      >
     </div>
     <div class="flex_row">
-      <a href="https://beian.miit.gov.cn/" target="_blank">{{ right }}</a>
+      <a href="https://beian.miit.gov.cn/" target="_blank">{{
+        BottomCom.content
+      }}</a>
     </div>
   </div>
 </template>
@@ -16,17 +21,28 @@ export default {
   name: "bottom",
   data() {
     return {
-      left: [
-        { text: "Terms & Consitions", link: "#" },
-        { text: "Support", link: "#" },
-        { text: "Contact us", link: "#" },
-      ],
-      right: "© 2022 欧美斯科技发展集团有限公司 苏ICP备20046058",
+      BottomCom: {},
       bgStyle: {
         background: 'url("/footer.png")',
         backgroundSize: "100% 100%",
       },
     };
+  },
+  methods: {
+    updateData(data) {
+      this.BottomCom = data;
+    },
+  },
+  watch: {
+    pageData: {
+      handler(newV) {
+        this.updateData(newV.BottomCom);
+      },
+      deep: true,
+    },
+  },
+  mounted() {
+    this.updateData(this.pageData.BottomCom);
   },
 };
 </script>

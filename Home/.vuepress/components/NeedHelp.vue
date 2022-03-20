@@ -20,8 +20,8 @@ export default {
   name: "NeedHelp",
   data() {
     return {
-      title: "Need Any Help",
-      content: "Content1",
+      title: "",
+      content: "",
       name: "",
       email: "",
       submit: false,
@@ -35,6 +35,21 @@ export default {
       }
       this.submit = true;
     },
+    updateData(data) {
+      this.title = data.title;
+      this.content = data.content;
+    },
+  },
+  watch: {
+    pageData: {
+      handler(v) {
+        this.updateData(v.helpInfo);
+      },
+      deep: true,
+    },
+  },
+  mounted() {
+    this.updateData(this.pageData.helpInfo);
   },
 };
 </script>

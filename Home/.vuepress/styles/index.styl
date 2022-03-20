@@ -1,3 +1,6 @@
+html,body,#app,.theme-container,.page,.theme-default-content,.admin,.admin_content
+  width: 100%;
+  height: 99%;
 body 
   padding: 0
   margin: 0
@@ -21,11 +24,25 @@ body
     &.open:blur
       display none
     .nav-dropdown
-      background: rgb(0 0 0 / 54%) !important;
+      background: rgba(35, 136, 251, 0.5) !important;
       border none !important
       left: 50%
       right: unset !important
       transform: translatex(-50%)
+      border-radius: 0 !important
+      .dropdown-item
+        padding: 0.625rem 0
+        text-align: center
+        &:not(&:last-child)
+          &:after
+            content: "";
+            position: absolute;
+            width: 37%;
+            height: 1px;
+            background: #fff;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 10px 0;
 .dropdown-wrapper .dropdown-title, .dropdown-wrapper .mobile-dropdown-title
   font-size: 16px !important
   color: #fff !important
@@ -35,6 +52,7 @@ body
   padding: unset !important
   height: 8.12rem
   border-bottom: none
+  background: url(/header.png) 0% 0% / 100% 100%;
   .links 
     background-color: transparent !important
     font-size: 16px !important
@@ -50,11 +68,11 @@ body
   padding-bottom: unset !important
   .area_title 
     font-size: 2.5rem
-    margin-bottom: 2.8rem
+    margin-bottom: 3rem
+    display: block
   .white_area_title 
     color:#fff
   .area_content
-    margin-top: 3rem
   .content_exhibit
     color: #000
     text-align: center
@@ -155,3 +173,50 @@ body
       width: 15.5rem !important
   .navbar .links .nav-links .nav-item
     margin-left: 1.75rem
+
+.login_content
+  position: absolute
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50% )
+  text-align: center
+  width: 21rem
+  div
+    + div
+      margin-top: 1.25rem
+    &:last-child
+      text-align: right
+  span
+    color: #000
+    font-family: "微软雅黑"
+    display: inline-block;
+    width: 3.3125rem;
+    margin-right: 1.25rem
+  button 
+    background: #0d87fa;
+    border-radius: 3.125rem;
+    padding: 1.125rem 3.125rem;
+    border: none;
+    color: #fff;
+    flex: 1;
+    width: 77%;
+    cursor pointer
+  input 
+    border-radius: 3.125rem;
+    padding: 1.125rem 1.875rem;
+    border-top: unset
+    border-left: unset
+    border-right: unset
+    border-bottom: 1px solid #c2bebe;
+    width: 12.125rem;
+    flex: 4;
+    + input 
+      margin: 1.875rem 0
+    &:focus 
+      outline: none;
+button
+  &:disabled
+      background-color: rgb(239 239 239) !important;
+      color: rgba(16,16,16,0.3) !important;
+      border-color: rgb(118 118 118) !important;
+

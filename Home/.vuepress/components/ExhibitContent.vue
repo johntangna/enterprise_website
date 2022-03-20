@@ -1,21 +1,18 @@
 <template>
   <div>
+    <span class="area_title">{{ title }}</span>
     <div class="desktop_flex">
       <div
-        v-for="(tab, index) in tabs"
+        v-for="(tab, index) in contentArr"
         :key="index"
-        :class="['titleClass flex_shrank', { active: currentTab == tab }]"
-        @click="clickTab(tab, index)"
+        :class="['titleClass flex_shrank', { active: currentIndex == index }]"
+        @click="clickTab(index)"
       >
         <img
-          :src="
-            currentTab == tab
-              ? contentArr[index].activeImg
-              : contentArr[index].img
-          "
+          :src="currentIndex == index ? tab.bg_activeImg : tab.bg_img"
           alt=""
         />
-        <span>{{ contentArr[index].text }}</span>
+        <span>{{ tab.button_text }}</span>
       </div>
     </div>
     <div class="content_com content_padding">
@@ -38,51 +35,36 @@ export default {
     return {
       contentArr: [
         {
-          text: "示意按钮",
-          img: "/content1.png",
-          activeImg: "/content1_active.png",
-          contentImg: "/swiper1.jpg",
-          title: "示意标题1",
-          content: "示意内容1",
-          link: "#",
-        },
-        {
-          text: "示意按钮",
-          img: "/content2.png",
-          activeImg: "/content2_active.png",
-          contentImg: "/swiper2.jpg",
-          title: "示意标题2",
-          content: "示意内容2",
-          link: "#",
-        },
-        {
-          text: "示意按钮",
-          img: "/content3.png",
-          activeImg: "/content3_active.png",
-          contentImg: "/swiper3.jpg",
-          title: "示意标题3",
-          content: "示意内容3",
-          link: "#",
-        },
-        {
-          text: "示意按钮",
-          img: "/content4.png",
-          activeImg: "/content4_active.png",
-          contentImg: "/swiper4.jpg",
-          title: "示意标题4",
-          content: "示意内容4",
-          link: "#",
+          contentImg: "",
+          title: "",
+          content: "",
+          link: "",
         },
       ],
+      title: "",
       currentIndex: 0,
       currentTab: "content1",
       tabs: ["content1", "content2", "content3", "content4"],
     };
   },
   methods: {
-    clickTab(tab, index) {
-      this.currentTab = tab;
+    clickTab(index) {
       this.currentIndex = index;
+    },
+    updateData(data) {
+      this.contentArr = data.arr;
+      this.title = data.title;
+    },
+  },
+  mounted() {
+    this.updateData(this.pageData.contentArr);
+  },
+  watch: {
+    pageData: {
+      handler(newV) {
+        this.updateData(newV.contentArr);
+      },
+      deep: true,
     },
   },
 };
@@ -126,6 +108,7 @@ export default {
     text-align: left;
     display: inline-block;
     vertical-align: middle;
+    width: 50%;
 
     :nth-child(2) {
       margin: 2.1875rem 0;
@@ -133,7 +116,7 @@ export default {
   }
 
   img {
-    width: 28.375rem;
+    width: 43%;
     height: 18.75rem;
     border-radius: 6px;
     margin-right: 1.875rem;

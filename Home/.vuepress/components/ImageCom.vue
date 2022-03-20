@@ -31,10 +31,13 @@ export default {
   },
   mounted() {
     let original_ele = document.getElementsByClassName("home-link")[0];
+    let imgLogo = document.getElementById("imgLogo");
+    if (imgLogo) original_ele.removeChild(imgLogo);
     let nav_bar = document.getElementsByClassName("navbar")[0];
     nav_bar.style.background = `url("${this.headerImg}")`;
     nav_bar.style.backgroundSize = "100% 100%";
     let img = document.createElement("img");
+    img.id = "imgLogo";
     img.src = this.src;
     img.width = this.width;
     img.height = this.height;

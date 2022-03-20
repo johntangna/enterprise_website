@@ -1,29 +1,31 @@
 <template>
-  <!-- Slider main container -->
-  <div class="swiper" :style="swiperStyle">
-    <!-- Additional required wrapper -->
-    <div class="swiper-wrapper">
-      <!-- Slides -->
-      <div class="swiper-slide" v-for="(item, index) in itemArr" :key="index">
-        <img v-if="item.type == 0" :src="item.link" alt="" />
-        <video
-          v-if="item.type == 1"
-          autoplay
-          loop
-          :src="item.link"
-          muted
-        ></video>
+  <div class="">
+    <!-- Slider main container -->
+    <div class="swiper" :style="swiperStyle">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide" v-for="(item, index) in itemArr" :key="index">
+          <img v-if="item.type == 0" :src="item.contentImg" alt="" />
+          <video
+            v-if="item.type == 1"
+            autoplay
+            loop
+            :src="item.video"
+            muted
+          ></video>
+        </div>
       </div>
-    </div>
-    <!-- If we need pagination -->
-    <div class="swiper-pagination"></div>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
 
-    <!-- If we need navigation buttons -->
-    <!-- <div class="swiper-button-prev"></div>
+      <!-- If we need navigation buttons -->
+      <!-- <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div> -->
 
-    <!-- If we need scrollbar -->
-    <div class="swiper-scrollbar"></div>
+      <!-- If we need scrollbar -->
+      <div class="swiper-scrollbar"></div>
+    </div>
   </div>
 </template>
 
@@ -34,20 +36,28 @@ export default {
   name: "SwiperBg",
   data() {
     return {
-      itemArr: [
-        { type: 1, link: "/video.mp4" },
-        { type: 0, link: "/swiper1.jpg" },
-        { type: 0, link: "/swiper2.jpg" },
-        { type: 0, link: "/swiper3.jpg" },
-        { type: 0, link: "/swiper4.jpg" },
-      ],
+      itemArr: [],
       swiperStyle: {
         background: "url('/banner_bg.png')",
         backgroundSize: "100% 100%",
       },
     };
   },
+  watch: {
+    pageData: {
+      handler(v) {
+        this.updateData(v.swiperBg);
+      },
+      deep: true,
+    },
+  },
+  methods: {
+    updateData(data) {
+      this.itemArr = data.arr;
+    },
+  },
   mounted() {
+    this.updateData(this.pageData.swiperBg);
     const swiper = new Swiper(".swiper", {
       effect: "flips",
       // creativeEffect: {
