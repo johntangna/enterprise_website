@@ -31,6 +31,10 @@ export default {
     },
   },
   mounted() {
+    this.pageData = new Function(
+      "return " +
+        JSON.parse(window.localStorage.getItem("pageData"))[0].jsonContent
+    )();
     this.$nextTick(() => {
       setTimeout(() => {
         window.scrollTo(

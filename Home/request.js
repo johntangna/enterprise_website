@@ -21,7 +21,7 @@ export function login(username, password) {
 
 export function getJsonContent() {
     let url = baseRequestUrl + '/jsonContent/getJsonList?jsonContentSourceName=欧美斯官网'
-    axios.get(url, {}).then(async(res) => {
+    return axios.get(url, {}).then(async(res) => {
         window.localStorage.setItem("pageData", JSON.stringify(res.data.result.records))
     }).catch((e) => {
         console.log('获取错误' + e)

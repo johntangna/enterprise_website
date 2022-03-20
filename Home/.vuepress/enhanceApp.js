@@ -7,17 +7,18 @@ import VueAMap from "vue-amap";
 import { getJsonContent } from "../request.js"
 export default async({ Vue, options, router, siteData, isServer }) => {
     if (!isServer) {
-        getJsonContent()
-        Vue.use(VueAMap)
-        let obj = (new Function("return " + JSON.parse(window.localStorage.getItem("pageData"))[0].jsonContent))()
-        Vue.mixin({
-            data() {
-                return {
-                    pageData: obj,
-                    currentOperateObj: {}
+        getJsonContent().finally(() => {
+            let obj = (new Function("return " + JSON.parse(window.localStorage.getItem("pageData"))[0].jsonContent))()
+            Vue.mixin({
+                data() {
+                    return {
+                        pageData: obj,
+                        currentOperateObj: {}
+                    }
                 }
-            }
+            })
         })
+        Vue.use(VueAMap)
     }
     // Vue.mixin({
     //     mounted() {
