@@ -6,29 +6,29 @@
         class="area_bg"
       >
         <div>标题</div>
-        <input
-          class="area_bg_input"
-          type="text"
-          v-model="pageData[currentObjectString].title"
-        />
+        <text-area-com
+          :content.sync="pageData[currentObjectString].title"
+        ></text-area-com>
       </div>
       <div
         v-if="currentObject.content || currentObject.content == ''"
         class="area_bg"
       >
         <div>描述</div>
-        <textarea
-          class="area_bg_input"
-          rows="8"
-          v-model="pageData[currentObjectString].content"
-        ></textarea>
+        <text-area-com
+          :rows="8"
+          :content.sync="pageData[currentObjectString].content"
+        ></text-area-com>
       </div>
       <div
         v-if="currentObject.contentImg || currentObject.contentImg == ''"
         class="area_bg"
       >
         <div>Logo</div>
-        <div class="bg_img">
+        <div
+          class="bg_img"
+          @click="changeImg(currentObjectString, 'contentImg')"
+        >
           <img :src="pageData[currentObjectString].contentImg" alt="" />
         </div>
       </div>
@@ -37,11 +37,10 @@
         class="area_bg"
       >
         <div>链接菜单名称</div>
-        <input
-          class="area_bg_input"
-          type="text"
-          v-model="pageData[currentObjectString].linkTitle"
-        />
+        <text-area-com
+          :rows="1"
+          :content.sync="pageData[currentObjectString].linkTitle"
+        ></text-area-com>
       </div>
       <div
         v-if="currentObject.linkArr || currentObject.linkArr == ''"
@@ -55,19 +54,17 @@
         >
           <div v-if="item.text || item.text == ''">
             <div class="text">详情名称</div>
-            <input
-              class="area_bg_input"
-              type="text"
-              v-model="pageData[currentObjectString].linkArr[index].text"
-            />
+            <text-area-com
+              :rows="2"
+              :content.sync="pageData[currentObjectString].linkArr[index].text"
+            ></text-area-com>
           </div>
           <div v-if="item.link || item.link == ''">
             <div class="text">详情链接</div>
-            <input
-              class="area_bg_input"
-              type="text"
-              v-model="pageData[currentObjectString].linkArr[index].link"
-            />
+            <text-area-com
+              :rows="1"
+              :content.sync="pageData[currentObjectString].linkArr[index].link"
+            ></text-area-com>
           </div>
         </div>
       </div>
@@ -76,11 +73,10 @@
         class="area_bg"
       >
         <div>联系方式名称</div>
-        <input
-          class="area_bg_input"
-          type="text"
-          v-model="pageData[currentObjectString].connectTitle"
-        />
+        <text-area-com
+          :rows="2"
+          :content.sync="pageData[currentObjectString].connectTitle"
+        ></text-area-com>
       </div>
       <div
         v-if="currentObject.connectArr || currentObject.connectArr == ''"
@@ -94,11 +90,12 @@
         >
           <div v-if="item.title || item.title == ''">
             <div class="text">内容标题</div>
-            <input
-              class="area_bg_input"
-              type="text"
-              v-model="pageData[currentObjectString].connectArr[index].title"
-            />
+            <text-area-com
+              :rows="2"
+              :content.sync="
+                pageData[currentObjectString].connectArr[index].title
+              "
+            ></text-area-com>
           </div>
         </div>
       </div>
@@ -107,7 +104,10 @@
         class="area_bg"
       >
         <div>联系组合图标</div>
-        <div class="bg_img">
+        <div
+          class="bg_img"
+          @click="changeImg(currentObjectString, 'connectImg')"
+        >
           <img :src="pageData[currentObjectString].connectImg" alt="" />
         </div>
       </div>
@@ -120,15 +120,21 @@
         >
           <div v-if="item.button_text || item.button_text == ''">
             <div class="text">按钮名称</div>
-            <input
-              class="area_bg_input"
-              type="text"
-              v-model="pageData[currentObjectString].arr[index].button_text"
-            />
+            <text-area-com
+              :rows="2"
+              :content.sync="
+                pageData[currentObjectString].arr[index].button_text
+              "
+            ></text-area-com>
           </div>
           <div v-if="item.bg_img || item.bg_img == ''">
             <div class="text">失焦背景图片</div>
-            <div class="bg_img">
+            <div
+              class="bg_img"
+              @click="
+                changeImg(currentObjectString, 'bg_img', true, 'bg_img', index)
+              "
+            >
               <img
                 :src="pageData[currentObjectString].arr[index].bg_img"
                 alt=""
@@ -136,13 +142,24 @@
             </div>
             <input
               class="area_bg_input opacityClass"
-              type="text"
+              type="hidden"
               v-model="pageData[currentObjectString].arr[index].bg_img"
             />
           </div>
           <div v-if="item.bg_activeImg || item.bg_activeImg == ''">
             <div class="text">聚焦背景图片</div>
-            <div class="bg_img">
+            <div
+              class="bg_img"
+              @click="
+                changeImg(
+                  currentObjectString,
+                  'bg_activeImg',
+                  true,
+                  'bg_activeImg',
+                  index
+                )
+              "
+            >
               <img
                 :src="pageData[currentObjectString].arr[index].bg_activeImg"
                 alt=""
@@ -150,38 +167,45 @@
             </div>
             <input
               class="area_bg_input opacityClass"
-              type="text"
+              type="hidden"
               v-model="pageData[currentObjectString].arr[index].bg_activeImg"
             />
           </div>
           <div v-if="item.title || item.title == ''">
             <div class="text">内容标题</div>
-            <input
-              class="area_bg_input"
-              type="text"
-              v-model="pageData[currentObjectString].arr[index].title"
-            />
+            <text-area-com
+              :rows="2"
+              :content.sync="pageData[currentObjectString].arr[index].title"
+            ></text-area-com>
           </div>
           <div v-if="item.content || item.content == ''">
             <div class="text">内容</div>
-            <textarea
-              class="area_bg_input"
-              rows="8"
-              v-model="pageData[currentObjectString].arr[index].content"
-            >
-            </textarea>
+            <text-area-com
+              :rows="8"
+              :content.sync="pageData[currentObjectString].arr[index].content"
+            ></text-area-com>
           </div>
           <div v-if="item.link || item.link == ''">
             <div class="text">详情链接</div>
-            <input
-              class="area_bg_input"
-              type="text"
-              v-model="pageData[currentObjectString].arr[index].link"
-            />
+            <text-area-com
+              :rows="1"
+              :content.sync="pageData[currentObjectString].arr[index].link"
+            ></text-area-com>
           </div>
           <div v-if="item.contentImg || item.contentImg == ''">
             <div class="text">内容图片</div>
-            <div class="bg_img">
+            <div
+              class="bg_img"
+              @click="
+                changeImg(
+                  currentObjectString,
+                  'contentImg',
+                  true,
+                  'contentImg',
+                  index
+                )
+              "
+            >
               <img
                 :src="pageData[currentObjectString].arr[index].contentImg"
                 alt=""
@@ -189,291 +213,68 @@
             </div>
             <input
               class="area_bg_input opacityClass"
-              type="text"
+              type="hidden"
               v-model="pageData[currentObjectString].arr[index].contentImg"
             />
           </div>
           <div v-if="item.video || item.video == ''">
             <div class="text">视频</div>
-            <div class="bg_img">
-              <img src="/play.png" alt="" />
+            <div
+              class="bg_img"
+              @click="
+                changeImg(currentObjectString, 'video', true, 'video', index, 1)
+              "
+            >
+              <video
+                :src="pageData[currentObjectString].arr[index].video"
+                alt=""
+              />
             </div>
             <input
               class="area_bg_input opacityClass"
-              type="text"
+              type="hidden"
               v-model="pageData[currentObjectString].arr[index].video"
             />
           </div>
         </div>
       </div>
     </div>
+    <template v-if="uploadPic">
+      <upload-pic-com
+        :index="index"
+        :property="property"
+        :arr="arr"
+        :img="img"
+        :type="type"
+        :list_index="list_index"
+        :close="closeFn"
+      ></upload-pic-com>
+    </template>
   </div>
 </template>
 
 <script>
 import { eventBus } from "../../EventBus.js";
-
+import TextAreaCom from "./DiyCom/TextAreaCom.vue";
+import UploadPicCom from "./UploadPic.vue";
 export default {
   name: "TextCom",
+  components: {
+    TextAreaCom,
+    UploadPicCom,
+  },
   data() {
     return {
-      currentObject: {
-        swiperBg: {
-          arr: [
-            {
-              type: 1,
-              video: "/video.mp4",
-            },
-            {
-              type: 0,
-              contentImg: "/swiper1.jpg",
-            },
-            {
-              type: 0,
-              contentImg: "/swiper2.jpg",
-            },
-            {
-              type: 0,
-              contentImg: "/swiper3.jpg",
-            },
-            {
-              type: 0,
-              contentImg: "/swiper4.jpg",
-            },
-          ],
-        },
-        contentArr: {
-          arr: [
-            {
-              button_text: "示意按钮",
-              bg_img: "/content1.png",
-              bg_activeImg: "/content1_active.png",
-              contentImg: "/swiper1.jpg",
-              title: "示意标题1",
-              content: "示意内容1",
-              link: "#",
-            },
-            {
-              button_text: "示意按钮",
-              bg_img: "/content2.png",
-              bg_activeImg: "/content2_active.png",
-              contentImg: "/swiper2.jpg",
-              title: "示意标题2",
-              content: "示意内容2",
-              link: "#",
-            },
-            {
-              button_text: "示意按钮",
-              bg_img: "/content3.png",
-              bg_activeImg: "/content3_active.png",
-              contentImg: "/swiper3.jpg",
-              title: "示意标题3",
-              content: "示意内容3",
-              link: "#",
-            },
-            {
-              button_text: "示意按钮",
-              bg_img: "/content4.png",
-              bg_activeImg: "/content4_active.png",
-              contentImg: "/swiper4.jpg",
-              title: "示意标题4",
-              content: "示意内容4",
-              link: "#",
-            },
-            {
-              button_text: "示意按钮",
-              bg_img: "/content5.png",
-              bg_activeImg: "/content5_active.png",
-              contentImg: "/swiper1.jpg",
-              title: "示意标题1",
-              content: "示意内容1",
-              link: "#",
-            },
-          ],
-          title: "示意文案内容标题",
-        },
-        evaluateArr: {
-          arr: [
-            {
-              bg_img: "/evaluate_left.png",
-              title: "17,354+ Happy Customer",
-              content:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspen",
-            },
-            {
-              bg_img: "/evaluate_center.png",
-              title: "135+ Got Award",
-              content:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspen",
-            },
-            {
-              bg_img: "/evaluate_right.png",
-              title: "2,45,000+ Follower",
-              content:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspen",
-            },
-          ],
-          title: "示意文案内容标题",
-        },
-        planArr: {
-          arr: [
-            {
-              bg_img: "/plan1.png",
-              bg_activeImg: "/plan1_active.png",
-              title: "Basic",
-              content: "content1",
-            },
-            {
-              bg_img: "/plan2.png",
-              bg_activeImg: "/plan2_active.png",
-              title: "Standard",
-              content: "content2",
-            },
-            {
-              bg_img: "/plan3.png",
-              bg_activeImg: "/plan3_active.png",
-              title: "Premium",
-              content: "content3",
-            },
-          ],
-          title: "示意文案内容标题",
-        },
-        qaArr: {
-          arr: [
-            {
-              content: "content1",
-              title: "somebody1",
-            },
-            {
-              content: "content2",
-              title: "somebody2",
-            },
-            {
-              content: "content3",
-              title: "somebody3",
-            },
-            {
-              content: "content4",
-              title: "somebody4",
-            },
-          ],
-          title: "示意文案内容标题",
-        },
-        helpInfo: {
-          title: "Need Any Help",
-          content: "content1",
-        },
-        teamArr: {
-          arr: [
-            {
-              contentImg: "/default_img.png",
-              title: "A",
-              content: "A",
-            },
-            {
-              contentImg: "/default_img.png",
-              title: "AB",
-              content: "AB",
-            },
-            {
-              contentImg: "/default_img.png",
-              title: "ABC",
-              content: "ABC",
-            },
-            {
-              contentImg: "/default_img.png",
-              title: "ABCD",
-              content: "ABCD",
-            },
-          ],
-          title: "示意文案内容标题",
-        },
-        blogTeamArr: {
-          arr: [
-            {
-              contentImg: "/default_img.png",
-              title: "A",
-              content: "25 July",
-              link: "#",
-            },
-            {
-              contentImg: "/default_img.png",
-              title: "ABC",
-              content: "25 July",
-              link: "#",
-            },
-            {
-              contentImg: "/default_img.png",
-              title: "ABCD",
-              content: "25 July",
-              link: "#",
-            },
-          ],
-          title: "示意文案内容标题",
-        },
-        companyInfo: {
-          content:
-            "我们主要营业，以及主要经营产品，有什么问题可以咨询我们的，我们都竭力为你服务",
-          contentImg: "/widget_logo.png",
-          linkTitle: "Usefull Links",
-          linkArr: [
-            {
-              text: "About us",
-              link: "#",
-            },
-            {
-              text: "Team",
-              link: "#",
-            },
-            {
-              text: "Career",
-              link: "#",
-            },
-            {
-              text: "Services",
-              link: "#",
-            },
-            {
-              text: "Contact",
-              link: "#",
-            },
-          ],
-          connectTitle: "Connect",
-          connectArr: [
-            {
-              title: "江苏省连云港市海州区市民路2号",
-            },
-            {
-              title: "info@onmouse.cn",
-            },
-            {
-              title: "114",
-            },
-          ],
-          connectImg: "/widget_icon.png",
-        },
-        contactUs: {
-          title: "示意文案内容标题",
-        },
-        BottomCom: {
-          arr: [
-            {
-              title: "Terms & Consitions",
-              link: "#",
-            },
-            {
-              title: "Support",
-              link: "#",
-            },
-            {
-              title: "Contact us",
-              link: "#",
-            },
-          ],
-          content: "© 2022 欧美斯科技发展集团有限公司 苏ICP备20046058",
-        },
-      },
+      currentObject: {},
       currentObjectString: "",
+      index: "",
+      property: "",
+      uploadPic: false,
+      arr: false,
+      img: "",
+      type: 0,
+      list_index: 0,
+      // bg_img: null,
     };
   },
   methods: {
@@ -485,15 +286,44 @@ export default {
         this.currentObjectString = obj_localstorage;
       }
     },
+    changeImg(
+      index,
+      property,
+      arr = false,
+      img = "",
+      list_index = 0,
+      type = 0
+    ) {
+      this.index = index;
+      this.property = property;
+      this.arr = arr;
+      this.img = img;
+      this.list_index = list_index;
+      this.type = type;
+      this.uploadPic = true;
+    },
+    closeFn() {
+      this.uploadPic = false;
+    },
   },
   mounted() {
     this.updateDate();
     eventBus.$on("currentIndex", (msg) => {
       this.updateDate(msg);
     });
+    // this.$nextTick(() => {
+    //   this.bg_img = document.getElementsByClassName("bg_img");
+    //   for (let i = 0; i < this.bg_img.length; i++) {
+    //     this.bg_img[i].onclick = (e) => {
+    //       console.info(e.target.parentElement.parentElement.children[2].value);
+    //     };
+    //   }
+    // });
+    // window.addEventListener
   },
   beforeDestroy() {
     eventBus.$off("currentIndex");
+    // this.bg_img = null;
   },
 };
 </script>
@@ -502,6 +332,7 @@ export default {
 .scroll_out {
   overflow-x: overlay;
   flex: 1;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
 }
 
 .area_bg {
@@ -520,17 +351,22 @@ export default {
     color: #6d7882;
     width: 100%;
     box-sizing: border-box;
+    resize: none;
 
     &:focus {
       outline: #646464 solid 1px;
     }
   }
 
-  .area_bg_input {
+  ::v-deep .area_bg_input {
     margin-top: 10px;
 
-    .text, img {
+    .text {
       margin-top: 10px;
+    }
+
+    img {
+      vertical-align: middle;
     }
 
     &:after {
@@ -557,6 +393,31 @@ export default {
   .bg_img {
     background: #9e9e9e;
     margin-top: 10px;
+    text-align: center;
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+
+    video {
+      width: 100%;
+      height: 100%;
+    }
+
+    &:hover {
+      background-color: rgba(109, 120, 130, 0.85) !important;
+
+      &:after {
+        content: '选择图像';
+        width: 100%;
+        height: 20px;
+        background: rgba(0, 0, 0, 0.2);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        color: #fff;
+        padding: 5px 0;
+      }
+    }
   }
 }
 </style>

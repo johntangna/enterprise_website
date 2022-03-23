@@ -5,13 +5,15 @@
         v-for="(item, index) in BottomCom.arr"
         :key="index"
         :href="item.link"
-        >{{ item.title }}</a
-      >
+        v-html="item.title"
+      ></a>
     </div>
     <div class="flex_row">
-      <a href="https://beian.miit.gov.cn/" target="_blank">{{
-        BottomCom.content
-      }}</a>
+      <a
+        href="https://beian.miit.gov.cn/"
+        target="_blank"
+        v-html="BottomCom.content"
+      ></a>
     </div>
   </div>
 </template>

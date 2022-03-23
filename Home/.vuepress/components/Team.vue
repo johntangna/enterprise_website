@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span class="area_title">{{ title }}</span>
+    <span class="area_title" v-html="title"></span>
     <div class="flex_row team_team">
       <div
         class="team"
@@ -21,8 +21,8 @@
           "
         ></div>
         <div class="team_content">
-          <strong>{{ item.title }}</strong>
-          <div>{{ item.content }}</div>
+          <strong v-html="item.title"></strong>
+          <div v-html="item.content"></div>
         </div>
       </div>
     </div>

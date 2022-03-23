@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span class="area_title">{{ title }}</span>
+    <span class="area_title" v-html="title"></span>
     <div class="flex_row blog">
       <div
         class="team"
@@ -11,9 +11,9 @@
       >
         <img :src="item.contentImg" alt="" />
         <div class="team_content">
-          <strong>{{ item.title }}</strong>
+          <strong v-html="item.title"></strong>
           <div>
-            <span>{{ item.content }}</span>
+            <span v-html="item.content">{{ item.content }}</span>
             <a :href="item.link">Read More</a>
           </div>
         </div>

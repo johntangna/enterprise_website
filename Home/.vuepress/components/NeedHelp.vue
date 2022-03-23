@@ -1,8 +1,8 @@
 <template>
   <div class="flex_row align_center flex_start help_inline">
     <div>
-      <h1>{{ title }}</h1>
-      <span>{{ content }}</span>
+      <h1 v-html="title"></h1>
+      <span v-html="content"></span>
     </div>
     <div class="right" v-if="submit">
       <h3>Best wishes</h3>

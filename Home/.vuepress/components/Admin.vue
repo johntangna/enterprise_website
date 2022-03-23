@@ -162,6 +162,7 @@ export default {
     top: 1.875rem;
     bottom: 0px;
     left: 0;
+    z-index: 100;
   }
 
   .content_left {

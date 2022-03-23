@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span class="area_title">{{ title }}</span>
+    <span class="area_title" v-html="title"></span>
     <div class="flex_row flex_around appraise_block">
       <img :src="appraise" alt="" />
       <div class="appraise">
@@ -17,8 +17,8 @@
       <div class="flex_row align_center">
         <img :src="icon" :width="width" :height="height" alt="" />
         <div class="content">
-          <div>{{ qaArr[currentIndex].content }}</div>
-          <strong>{{ qaArr[currentIndex].title }}</strong>
+          <div v-html="qaArr[currentIndex].content"></div>
+          <strong v-html="qaArr[currentIndex].title"></strong>
         </div>
       </div>
     </div>

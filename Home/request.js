@@ -40,3 +40,20 @@ export function updateJsonContent(data) {
         console.log('更新错误' + e)
     })
 }
+
+export function getFileList(data) {
+    let url = `${baseRequestUrl}/omsFile/getOmsFileList?fileName=${data.fileName}&type=${data.type}&pageNo=${data.pageNo}&pageSize=${data.pageSize}`
+    return axios({
+        url: url,
+        method: "get"
+    })
+}
+
+export function uploadFile(data) {
+    let url = baseRequestUrl + '/omsFile/upload'
+    return axios({
+        url: url,
+        method: "post",
+        data: data
+    })
+}

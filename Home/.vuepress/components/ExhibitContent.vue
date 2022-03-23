@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span class="area_title">{{ title }}</span>
+    <span class="area_title" v-html="title"></span>
     <div class="desktop_flex">
       <div
         v-for="(tab, index) in contentArr"
@@ -12,15 +12,15 @@
           :src="currentIndex == index ? tab.bg_activeImg : tab.bg_img"
           alt=""
         />
-        <span>{{ tab.button_text }}</span>
+        <span v-html="tab.button_text"></span>
       </div>
     </div>
     <div class="content_com content_padding">
       <img :src="contentArr[currentIndex].contentImg" alt="" />
       <div class="content_com_right">
-        <div>{{ contentArr[currentIndex].title }}</div>
-        <div>
-          {{ contentArr[currentIndex].content }}
+        <div v-html="contentArr[currentIndex].title"></div>
+        <div v-html="contentArr[currentIndex].content">
+          <!-- {{ contentArr[currentIndex].content }} -->
         </div>
         <a :href="contentArr[currentIndex].link">Read More ></a>
       </div>

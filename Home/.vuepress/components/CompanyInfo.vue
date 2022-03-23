@@ -2,22 +2,22 @@
   <div class="flex_row company_info">
     <div>
       <img :src="companyInfo.contentImg" alt="" />
-      <div class="fontColor">{{ companyInfo.content }}</div>
+      <div class="fontColor" v-html="companyInfo.content"></div>
     </div>
     <div>
-      <strong>{{ companyInfo.linkTitle }}</strong>
+      <strong v-html="companyInfo.linkTitle"></strong>
       <div
         class="linkText"
         v-for="(item, index) in companyInfo.linkArr"
         :key="index"
       >
-        <a :href="item.link" target="_blank">{{ item.text }}</a>
+        <a :href="item.link" target="_blank" v-html="item.text"></a>
       </div>
     </div>
     <div class="connect">
-      <strong>{{ companyInfo.connectTitle }}</strong>
+      <strong v-html="companyInfo.connectTitle"></strong>
       <div v-for="(item, index) in companyInfo.connectArr" :key="index">
-        <span class="fontColor">{{ item.title }}</span>
+        <span class="fontColor" v-html="item.title"></span>
       </div>
       <img :src="companyInfo.connectImg" alt="" />
     </div>

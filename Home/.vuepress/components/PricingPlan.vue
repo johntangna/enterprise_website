@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span class="area_title">{{ title }}</span>
+    <span class="area_title" v-html="title"></span>
     <div class="flex_row pricing_plan_content">
       <div
         class="flex_row flex_vertical align_center pricing_plan"
@@ -15,9 +15,9 @@
           :height="height"
           alt=""
         />
-        <strong>{{ item.title }}</strong>
-        <span>{{ item.content }}</span>
-        <button>Purchase</button>
+        <strong v-html="item.title"></strong>
+        <span v-html="item.content"></span>
+        <button v-html="item.button_text"></button>
       </div>
     </div>
   </div>

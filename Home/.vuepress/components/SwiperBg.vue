@@ -58,36 +58,38 @@ export default {
   },
   mounted() {
     this.updateData(this.pageData.swiperBg);
-    const swiper = new Swiper(".swiper", {
-      effect: "flips",
-      // creativeEffect: {
-      //   prev: {
-      //     translate: [0, 0, -400],
-      //   },
-      //   next: {
-      //     translate: ["100%", 0, 0],
-      //   },
-      // },
-      // Optional parameters
-      loop: true,
-      autoplay: {
-        delay: 30000,
-      },
-      // If we need pagination
-      pagination: {
-        el: ".swiper-pagination",
-      },
+    this.$nextTick(() => {
+      const swiper = new Swiper(".swiper", {
+        effect: "flips",
+        // creativeEffect: {
+        //   prev: {
+        //     translate: [0, 0, -400],
+        //   },
+        //   next: {
+        //     translate: ["100%", 0, 0],
+        //   },
+        // },
+        // Optional parameters
+        loop: true,
+        autoplay: {
+          delay: 30000,
+        },
+        // If we need pagination
+        pagination: {
+          el: ".swiper-pagination",
+        },
 
-      // Navigation arrows
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
+        // Navigation arrows
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
 
-      // And if we need scrollbar
-      // scrollbar: {
-      //   el: ".swiper-scrollbar",
-      // },
+        // And if we need scrollbar
+        // scrollbar: {
+        //   el: ".swiper-scrollbar",
+        // },
+      });
     });
   },
 };

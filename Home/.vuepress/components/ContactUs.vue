@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span class="area_title">{{ title }}</span>
+    <span class="area_title" v-html="title"></span>
     <div class="flex_row contact_us">
       <div class="submit_form">
         <input type="text" placeholder="Name" v-model="name" />

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span class="area_title white_area_title">{{ title }}</span>
+    <span class="area_title white_area_title" v-html="title"></span>
     <div class="inline_row">
       <div
         v-for="(item, index) in evaluateArr"
@@ -11,12 +11,10 @@
           <img :src="item.bg_img" alt="" :width="width" :height="height" />
         </div>
         <div>
-          <span>{{ item.title }}</span>
+          <span v-html="item.title"></span>
         </div>
         <div>
-          <span>
-            {{ item.content }}
-          </span>
+          <span v-html="item.content"> </span>
         </div>
       </div>
     </div>
