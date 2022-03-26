@@ -3,6 +3,7 @@
     <div class="ope_list">
       <i class="next_line" title="换行" @click="changeLine($event)"></i>
       <i class="p" title="段落" @click="pLine($event)"></i>
+      <i class="first_line" title="缩进" @click="firstLine($event)"></i>
     </div>
     <textarea
       class="area_bg_input padding_area"
@@ -30,7 +31,7 @@ export default {
     inputChange(v) {
       this.$emit("update:content", v.target.value);
     },
-    inputPointer($event, str) {
+    inputPointer($event, str, flag = true) {
       let getCurrentInput =
         $event.target.parentElement.parentElement.childNodes[2];
       let s_t = getCurrentInput.selectionStart;
@@ -42,9 +43,10 @@ export default {
       } else {
         v.target.value =
           this.content.substring(0, s_t) + str + this.content.substring(e_t);
+        let lineStr = flag ? "  \n" : "";
         v.target.value =
           v.target.value.substring(0, s_t + str.length) +
-          "  \n" +
+          lineStr +
           v.target.value.substring(e_t + str.length);
       }
       getCurrentInput.selectionStart = this.content.length;
@@ -58,6 +60,10 @@ export default {
     },
     pLine($event) {
       let v = this.inputPointer($event, "<p>");
+      this.inputChange(v);
+    },
+    firstLine($event) {
+      let v = this.inputPointer($event, "&nbsp;", false);
       this.inputChange(v);
     },
   },
@@ -91,6 +97,11 @@ export default {
 
     .p {
       background: url('/p.png') 0 0 no-repeat;
+      background-size: 100% 100%;
+    }
+
+    .first_line {
+      background: url('/first_line.png') 0 0 no-repeat;
       background-size: 100% 100%;
     }
   }

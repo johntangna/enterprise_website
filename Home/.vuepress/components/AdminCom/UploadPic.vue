@@ -206,7 +206,7 @@ export default {
         this.pageData[this.index]["arr"][this.list_index][this.img] =
           this.dataList[this.currentItem].fileName;
       } else {
-        this.pageData[this.index][property] =
+        this.pageData[this.index][this.property] =
           this.dataList[this.currentItem].fileName;
       }
       this.close();
