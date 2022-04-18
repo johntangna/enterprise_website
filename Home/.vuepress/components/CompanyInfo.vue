@@ -5,7 +5,7 @@
       <div class="flex_row">
         <div
           class="address"
-          v-for="(item, index) in companyInfo.connectArr"
+          v-for="(item, index) in companyInfo.arr"
           :key="index"
         >
           <div>

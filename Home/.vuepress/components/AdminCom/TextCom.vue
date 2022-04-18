@@ -96,7 +96,7 @@
           :content.sync="pageData[currentObjectString].connectTitle"
         ></text-area-com>
       </div>
-      <div
+      <!-- <div
         v-if="currentObject.connectArr || currentObject.connectArr == ''"
         class="area_bg"
       >
@@ -119,7 +119,15 @@
             <div class="text">电话指示图标</div>
             <div
               class="bg_img"
-              @click="changeImg(currentObjectString, 'heartImg')"
+              @click="
+                changeImg(
+                  currentObjectString,
+                  'heartImg',
+                  true,
+                  'heartImg',
+                  index
+                )
+              "
             >
               <img
                 :src="pageData[currentObjectString].connectArr[index].heartImg"
@@ -131,7 +139,15 @@
             <div class="text">地址指示图标</div>
             <div
               class="bg_img"
-              @click="changeImg(currentObjectString, 'heartAddressImg')"
+              @click="
+                changeImg(
+                  currentObjectString,
+                  'heartAddressImg',
+                  true,
+                  'heartAddressImg',
+                  index
+                )
+              "
             >
               <img
                 :src="
@@ -152,7 +168,7 @@
             ></text-area-com>
           </div>
         </div>
-      </div>
+      </div> -->
       <div
         v-if="currentObject.qrcodeIns || currentObject.qrcodeIns == ''"
         class="area_bg"
@@ -321,6 +337,62 @@
               v-model="pageData[currentObjectString].arr[index].video"
             />
           </div>
+          <div v-if="item.heart || item.heart == ''">
+            <div class="text">地址</div>
+            <text-area-com
+              :rows="2"
+              :content.sync="pageData[currentObjectString].arr[index].heart"
+            ></text-area-com>
+          </div>
+          <div v-if="item.heartImg || item.heartImg == ''">
+            <div class="text">电话指示图标</div>
+            <div
+              class="bg_img"
+              @click="
+                changeImg(
+                  currentObjectString,
+                  'heartImg',
+                  true,
+                  'heartImg',
+                  index
+                )
+              "
+            >
+              <img
+                :src="pageData[currentObjectString].arr[index].heartImg"
+                alt=""
+              />
+            </div>
+          </div>
+          <div v-if="item.heartAddressImg || item.heartAddressImg == ''">
+            <div class="text">地址指示图标</div>
+            <div
+              class="bg_img"
+              @click="
+                changeImg(
+                  currentObjectString,
+                  'heartAddressImg',
+                  true,
+                  'heartAddressImg',
+                  index
+                )
+              "
+            >
+              <img
+                :src="pageData[currentObjectString].arr[index].heartAddressImg"
+                alt=""
+              />
+            </div>
+          </div>
+          <div v-if="item.heartAddress || item.heartAddress == ''">
+            <div class="text">地址</div>
+            <text-area-com
+              :rows="2"
+              :content.sync="
+                pageData[currentObjectString].arr[index].heartAddress
+              "
+            ></text-area-com>
+          </div>
         </div>
       </div>
     </div>
@@ -394,7 +466,10 @@ export default {
       type = 0
     ) {
       this.index = index;
+      console.info(`索引${index}`);
       this.property = property;
+      console.info(`属性${property}`);
+      console.info(`pageData: ${this.pageData}`);
       this.arr = arr;
       this.img = img;
       this.list_index = list_index;

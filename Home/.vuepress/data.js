@@ -229,7 +229,7 @@ export const pageData = {
             "link": "#"
         }],
         "connectTitle": "",
-        "connectArr": [{
+        "arr": [{
             "heart": "Tel:15251507309‚0518-85192712",
             "heartImg": "/phone.png",
             "heartAddressImg": "/address.png",
