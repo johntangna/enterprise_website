@@ -1,7 +1,10 @@
 <template>
   <div>
     <span class="area_title" v-html="title"></span>
-    <div class="desktop_flex">
+    <div
+      class="desktop_flex whitebg"
+      style="border-top-left-radius: 7px; border-top-right-radius: 7px"
+    >
       <div
         v-for="(tab, index) in contentArr"
         :key="index"
@@ -15,7 +18,7 @@
         <span v-html="tab.button_text"></span>
       </div>
     </div>
-    <div class="content_com content_padding">
+    <div class="content_com content_padding whitebg">
       <img :src="contentArr[currentIndex].contentImg" alt="" />
       <div class="content_com_right">
         <div v-html="contentArr[currentIndex].title"></div>
@@ -74,7 +77,6 @@ export default {
 .titleClass {
   color: #000;
   font-size: 1.25rem;
-  border: 1px solid #dfdfdf;
   width: 19.157rem;
   height: 6rem;
   display: inline-block;
@@ -82,7 +84,11 @@ export default {
   position: relative;
 
   &+ .titleClass {
-    border-left-style: none;
+    border-left: 1px solid #dfdfdf;
+  }
+
+  img {
+    height: 80%;
   }
 
   span, img {
@@ -129,5 +135,9 @@ export default {
   color: #fff;
   background: url('/content_active.png') 0 0 no-repeat;
   background-size: 100% 100%;
+}
+
+.whitebg {
+  background: #fff;
 }
 </style>

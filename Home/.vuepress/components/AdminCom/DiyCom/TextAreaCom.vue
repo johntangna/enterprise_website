@@ -3,7 +3,7 @@
     <div class="ope_list">
       <i class="next_line" title="换行" @click="changeLine($event)"></i>
       <i class="p" title="段落" @click="pLine($event)"></i>
-      <i class="first_line" title="缩进" @click="firstLine($event)"></i>
+      <i class="first_line" title="缩进2格" @click="firstLine($event)"></i>
     </div>
     <textarea
       class="area_bg_input padding_area"
@@ -63,7 +63,11 @@ export default {
       this.inputChange(v);
     },
     firstLine($event) {
-      let v = this.inputPointer($event, "&nbsp;", false);
+      let v = this.inputPointer(
+        $event,
+        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+        false
+      );
       this.inputChange(v);
     },
   },
@@ -75,12 +79,11 @@ export default {
   position: relative;
 
   .ope_list {
-    width: 100%;
     height: 37px;
     position: absolute;
-    top: 10px;
+    top: -30px;
+    right: 0px;
     padding: 5px;
-    border-bottom: 1px solid #d5dadf;
     box-sizing: border-box;
 
     i {
@@ -108,7 +111,7 @@ export default {
 }
 
 input, textarea {
-  padding: 40px 5px 5px 5px;
+  padding: 5px;
   border-radius: 3px;
   border: 1px solid #d5dadf;
   color: #6d7882;

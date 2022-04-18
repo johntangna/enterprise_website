@@ -6,9 +6,20 @@
       <div class="swiper-wrapper">
         <!-- Slides -->
         <div class="swiper-slide" v-for="(item, index) in itemArr" :key="index">
-          <img v-if="item.type == 0" :src="item.contentImg" alt="" />
+          <img
+            v-if="item.type == 0 && item.show == 1"
+            :src="item.contentImg"
+            alt=""
+          />
           <video
-            v-if="item.type == 1"
+            v-if="item.type == 1 && item.show == 1"
+            autoplay
+            loop
+            :src="item.video"
+            muted
+          ></video>
+          <video
+            v-if="item.type == 1 && item.show == 0 && adminAccess"
             autoplay
             loop
             :src="item.video"
@@ -34,6 +45,11 @@ import Swiper from "../Swiper.js";
 import "../Swiper.css";
 export default {
   name: "SwiperBg",
+  inject: {
+    adminAccess: {
+      default: false,
+    },
+  },
   data() {
     return {
       itemArr: [],
@@ -53,6 +69,13 @@ export default {
   },
   methods: {
     updateData(data) {
+      data.arr.forEach((item, index) => {
+        if (item.show == 0) {
+          if (!this.adminAccess) {
+            data.arr.splice(index, 1);
+          }
+        }
+      });
       this.itemArr = data.arr;
     },
   },
@@ -101,13 +124,13 @@ export default {
   padding: 8.125rem 0 0 0;
   text-align: center;
 
-  img {
-    width: 95%;
+  ::v-deep .swiper-pagination-bullet {
+    opacity: 1;
   }
 }
 
 video {
-  width: 90%;
+  height: 816px;
 }
 
 .swiper-scrollbar {

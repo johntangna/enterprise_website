@@ -11,6 +11,24 @@
         ></text-area-com>
       </div>
       <div
+        v-if="currentObject.leftContent || currentObject.leftContent == ''"
+        class="area_bg"
+      >
+        <div>总部地图</div>
+        <text-area-com
+          :content.sync="pageData[currentObjectString].leftContent"
+        ></text-area-com>
+      </div>
+      <div
+        v-if="currentObject.leftContent || currentObject.leftContent == ''"
+        class="area_bg"
+      >
+        <div>子公司地图</div>
+        <text-area-com
+          :content.sync="pageData[currentObjectString].rightContent"
+        ></text-area-com>
+      </div>
+      <div
         v-if="currentObject.content || currentObject.content == ''"
         class="area_bg"
       >
@@ -82,33 +100,79 @@
         v-if="currentObject.connectArr || currentObject.connectArr == ''"
         class="area_bg"
       >
-        <div>联系方式列表</div>
+        <div>地址信息列表</div>
         <div
           class="area_bg_input plus_padding"
           v-for="(item, index) in currentObject.connectArr"
           :key="index"
         >
-          <div v-if="item.title || item.title == ''">
-            <div class="text">内容标题</div>
+          <div v-if="item.heart || item.heart == ''">
+            <div class="text">地址</div>
             <text-area-com
               :rows="2"
               :content.sync="
-                pageData[currentObjectString].connectArr[index].title
+                pageData[currentObjectString].connectArr[index].heart
+              "
+            ></text-area-com>
+          </div>
+          <div v-if="item.heartImg || item.heartImg == ''">
+            <div class="text">电话指示图标</div>
+            <div
+              class="bg_img"
+              @click="changeImg(currentObjectString, 'heartImg')"
+            >
+              <img
+                :src="pageData[currentObjectString].connectArr[index].heartImg"
+                alt=""
+              />
+            </div>
+          </div>
+          <div v-if="item.heartAddressImg || item.heartAddressImg == ''">
+            <div class="text">地址指示图标</div>
+            <div
+              class="bg_img"
+              @click="changeImg(currentObjectString, 'heartAddressImg')"
+            >
+              <img
+                :src="
+                  pageData[currentObjectString].connectArr[index]
+                    .heartAddressImg
+                "
+                alt=""
+              />
+            </div>
+          </div>
+          <div v-if="item.heartAddress || item.heartAddress == ''">
+            <div class="text">地址</div>
+            <text-area-com
+              :rows="2"
+              :content.sync="
+                pageData[currentObjectString].connectArr[index].heartAddress
               "
             ></text-area-com>
           </div>
         </div>
       </div>
       <div
-        v-if="currentObject.connectImg || currentObject.connectImg == ''"
+        v-if="currentObject.qrcodeIns || currentObject.qrcodeIns == ''"
         class="area_bg"
       >
-        <div>联系组合图标</div>
+        <div>二维码标题</div>
+        <text-area-com
+          :rows="2"
+          :content.sync="pageData[currentObjectString].qrcodeIns"
+        ></text-area-com>
+      </div>
+      <div
+        v-if="currentObject.qrcodeImg || currentObject.qrcodeImg == ''"
+        class="area_bg"
+      >
+        <div>二维码图片</div>
         <div
           class="bg_img"
-          @click="changeImg(currentObjectString, 'connectImg')"
+          @click="changeImg(currentObjectString, 'qrcodeImg')"
         >
-          <img :src="pageData[currentObjectString].connectImg" alt="" />
+          <img :src="pageData[currentObjectString].qrcodeImg" alt="" />
         </div>
       </div>
       <div v-if="currentObject.arr || currentObject.arr == ''" class="area_bg">
@@ -219,6 +283,27 @@
           </div>
           <div v-if="item.video || item.video == ''">
             <div class="text">视频</div>
+            <div class="text radio_group">
+              <span>是否显示</span>
+              <span @click="changeVisble(1, index)">
+                <input
+                  type="radio"
+                  name="show"
+                  value="1"
+                  id="s"
+                  :checked="item.show == 1"
+                /><label for="s">是</label>
+              </span>
+              <span @click="changeVisble(0, index)">
+                <input
+                  type="radio"
+                  name="show"
+                  value="0"
+                  id="h"
+                  :checked="item.show == 0"
+                /><label for="h">否</label>
+              </span>
+            </div>
             <div
               class="bg_img"
               @click="
@@ -286,6 +371,20 @@ export default {
         this.currentObjectString = obj_localstorage;
       }
     },
+    /**
+     * @param value 传过来的值
+     */
+    changeVisble(value, index) {
+      this.pageData[this.currentObjectString].arr[index].show = value;
+    },
+    /**
+     * @param index 属性索引
+     * @param property 属性值
+     * @param arr 是否数组
+     * @param img 数值在属性中的名字
+     * @param list_index 在数组的位置
+     * @param type 信息属性（只用于轮播图）
+     */
     changeImg(
       index,
       property,
@@ -417,6 +516,15 @@ export default {
         color: #fff;
         padding: 5px 0;
       }
+    }
+  }
+
+  .radio_group {
+    display: flex;
+
+    input {
+      width: 20px !important;
+      outline: none;
     }
   }
 }

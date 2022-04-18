@@ -1,13 +1,13 @@
 <template>
   <div class="bottom bottom_com inline_common" :style="bgStyle">
-    <div class="flex_row">
+    <!-- <div class="flex_row">
       <a
         v-for="(item, index) in BottomCom.arr"
         :key="index"
         :href="item.link"
         v-html="item.title"
       ></a>
-    </div>
+    </div> -->
     <div class="flex_row">
       <a
         href="https://beian.miit.gov.cn/"

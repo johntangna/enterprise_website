@@ -45,6 +45,9 @@ import ContactUs from "./ContactUs.vue";
 import CompanyInfo from "./CompanyInfo.vue";
 import BottomCom from "./BottomCom.vue";
 import ScrollUp from "./ScrollUp.vue";
+import CompanyIns from "./CompanyIns.vue";
+import Ka from "./Ka.vue";
+import ParternBrand from "./ParternBrand.vue";
 export default {
   name: "admin",
   components: {
@@ -64,6 +67,14 @@ export default {
     PictureCom,
     Home,
     ScrollUp,
+    CompanyIns,
+    Ka,
+    ParternBrand,
+  },
+  provide() {
+    return {
+      adminAccess: true,
+    };
   },
   data() {
     return {

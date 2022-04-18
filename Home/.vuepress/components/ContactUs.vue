@@ -2,26 +2,45 @@
   <div>
     <span class="area_title" v-html="title"></span>
     <div class="flex_row contact_us">
-      <div class="submit_form">
+      <!-- <div class="submit_form">
         <input type="text" placeholder="Name" v-model="name" />
         <input type="text" placeholder="Email" v-model="email" />
         <textarea placeholder="Message" rows="8" v-model="message" />
         <button @click="send">Send Message</button>
-      </div>
+      </div> -->
       <div class="map">
         <el-amap
           class="amap-box"
-          :vid="'amap-vue'"
+          :vid="'amap-vue1'"
           :center="center"
           :zooms="zooms"
         >
           <el-amap-marker
             :position="position"
-            :title="'欧美斯科技发展集团有限公司'"
+            :title="leftContent"
             :icon="'../marker.png'"
             :offset="offset"
           ></el-amap-marker>
         </el-amap>
+        <div class="linear_gradient">
+          <span>{{ leftContent }}</span>
+        </div>
+      </div>
+      <div class="map">
+        <el-amap
+          class="amap-box"
+          :vid="'amap-vue2'"
+          :center="center2"
+          :zooms="zooms2"
+        >
+          <el-amap-marker
+            :position="position2"
+            :title="rightContent"
+            :icon="'../marker.png'"
+            :offset="offset2"
+          ></el-amap-marker>
+        </el-amap>
+        <div class="linear_gradient">{{ rightContent }}</div>
       </div>
     </div>
   </div>
@@ -53,10 +72,16 @@ export default {
       message: "",
       submit: false,
       center: [],
+      center2: [],
       position: [],
+      position2: [],
       offset: [-35, -60],
+      offset2: [-35, -60],
       zooms: [14, 19],
+      zooms2: [14, 19],
       title: "",
+      leftContent: "",
+      rightContent: "",
     };
   },
   watch: {
@@ -84,12 +109,16 @@ export default {
     },
     updateData(data) {
       this.title = data.title;
+      this.leftContent = data.leftContent;
+      this.rightContent = data.rightContent;
     },
   },
   mounted() {
     this.updateData(this.pageData.contactUs);
     this.center = [119.177538, 34.604303];
+    this.center2 = [121.48209, 31.232879];
     this.position = [119.177538, 34.604303];
+    this.position2 = [121.48209, 31.232879];
     try {
       VueAMap.initAMapApiLoader({
         key: "3056e7967382c1e7a8baded08f3969b3",
@@ -148,11 +177,21 @@ export default {
 }
 
 .map {
-  width: 34.375rem;
-  height: 20.9375rem;
+  width: 39.5rem;
+  height: 17.75rem;
   background: #fff;
   padding: 0.5rem;
-  flex: 1;
+  box-shadow: 0px 0px 10px 0px #c3c3c3;
+}
+
+.linear_gradient {
+  background-image: linear-gradient(to right, #06abfb, #00a1fd, #0096fd, #008bfc, #0e7ffa);
+  padding: 10px 3.125rem;
+  color: #fff;
+  font-size: 17px;
+  display: inline-block;
+  margin-top: 33px;
+  border-radius: 100px;
 }
 
 ::v-deep .amap-logo, ::v-deep .amap-copyright {
