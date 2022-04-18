@@ -117,7 +117,7 @@ export default {
       pages: 0,
       model: {
         pageNo: 1,
-        pageSize: 10,
+        pageSize: 66,
         fileName: "",
         type: 0,
       },
