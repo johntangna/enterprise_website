@@ -8,13 +8,19 @@
     </div>
     <div class="content">
       <div class="abs content_left over_auto">
-        <div
-          v-for="(menu, index) in menuArr"
-          :class="{ active: currentIndex == index }"
-          :key="index"
-          @click="editData(menu, index)"
-        >
-          <span>{{ menu.text }}</span>
+        <div v-for="(menu, index) in menuArr" :key="index">
+          <span @click="editData(menu, $event)" class="menu_class">{{
+            menu.text
+          }}</span>
+          <div class="sub_menu" v-if="menu.items">
+            <div
+              v-for="(item, index) in menu.items"
+              :key="index"
+              @click="editData(item, $event)"
+            >
+              <span class="menu_class">{{ item.text }}</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="abs com_pane pos flex_row flex_vertical">
@@ -22,14 +28,22 @@
         <submit-btn></submit-btn>
       </div>
       <div id="admin" class="content_right">
-        <home></home>
+        <!-- <home></home> -->
+        <component :is="currentPageCom"></component>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { eventBus } from "../EventBus.js";
 import Home from "./AdminCom/Home.vue";
+import GroupIns from "./AdminCom/GroupIns.vue";
+import GroupBra from "./AdminCom/GroupBra.vue";
+import GroupDevolp from "./AdminCom/GroupDevolp.vue";
+import GroupDis from "./AdminCom/GroupDis.vue";
+import GroupHon from "./AdminCom/GroupHon.vue";
+import GroupCom from "./AdminCom/GroupCom.vue";
 import TextCom from "./AdminCom/TextCom.vue";
 import SubmitBtn from "./AdminCom/SubmitBtn.vue";
 import PictureCom from "./AdminCom/PictureCom.vue";
@@ -48,6 +62,21 @@ import ScrollUp from "./ScrollUp.vue";
 import CompanyIns from "./CompanyIns.vue";
 import Ka from "./Ka.vue";
 import ParternBrand from "./ParternBrand.vue";
+import BranchMap from "./BranchMap.vue";
+import CompanyShow from "./CompanyShow.vue";
+import SwiperBgBranch from "./SwiperBgBranch.vue";
+import SwiperBgDevolp from "./SwiperBgDevolp.vue";
+import SwiperBgInstruction from "./SwiperBgInstruction.vue";
+import TimeLine from "./TimeLine.vue";
+import SwiperBgIndustry from "./SwiperBgIndustry.vue";
+import Industry from "./Industry.vue";
+import SwiperBgHonor from "./SwiperBgHonor.vue";
+import HonorRecommend from "./HonorRecommend.vue";
+import honorPrise from "./honorPrise.vue";
+import HonorTrophy from "./HonorTrophy.vue";
+import SwiperBgCulture from "./SwiperBgCulture.vue";
+import CultureCore from "./CultureCore.vue";
+import CultureCorner from "./CultureCorner.vue";
 export default {
   name: "admin",
   components: {
@@ -66,10 +95,31 @@ export default {
     SubmitBtn,
     PictureCom,
     Home,
+    GroupIns,
+    GroupBra,
+    GroupDevolp,
+    GroupDis,
+    GroupHon,
+    GroupCom,
     ScrollUp,
     CompanyIns,
     Ka,
     ParternBrand,
+    BranchMap,
+    CompanyShow,
+    SwiperBgBranch,
+    SwiperBgDevolp,
+    SwiperBgInstruction,
+    TimeLine,
+    SwiperBgIndustry,
+    Industry,
+    SwiperBgHonor,
+    HonorRecommend,
+    honorPrise,
+    HonorTrophy,
+    SwiperBgCulture,
+    CultureCore,
+    CultureCorner,
   },
   provide() {
     return {
@@ -80,18 +130,46 @@ export default {
     return {
       jsonContent: {},
       menuArr: [
-        { text: "首页", link: "home" },
+        { text: "首页", link: "/" },
         {
           text: "关于我们",
-          itemsArr: [
-            { text: "集团简介", link: "instruction" },
-            { text: "分支结构", link: "constraction" },
+          items: [
+            { text: "集团简介", link: "/group/instruction" },
+            { text: "分支机构", link: "/group/branch" },
+            { text: "发展历程", link: "/group/devolp" },
+            { text: "集团产业分布", link: "/group/distrubution" },
+            { text: "集团荣耀", link: "/group/honor" },
+            { text: "企业文化", link: "/group/company_feature" },
           ],
         },
-        { text: "电商运营服务", link: "ecommerce" },
+        {
+          text: "电商运营服务",
+          items: [
+            { text: "电商运营服务介绍", link: "/e_commerce/instruction" },
+            { text: "专业运营团队", link: "/e_commerce/office" },
+            { text: "客服顾问团队", link: "/e_commerce/custome" },
+            { text: "品牌合作", link: "/e_commerce/brand" },
+            { text: "店铺矩阵", link: "/e_commerce/store" },
+          ],
+        },
+        {
+          text: "分销与贸易业务",
+          items: [
+            { text: "分销体系", link: "/distrbution/contructor" },
+            { text: "分销生态", link: "/distrbution/env" },
+          ],
+        },
+        { text: "MCN网红经纪", link: "/mcn_celebrity" },
+        { text: "欧美斯云仓", link: "/oms_warehouse" },
+        { text: "大数据咨询", link: "/bid_data_consult" },
+        { text: "欧美斯动态(新闻中心)", link: "/oms_news" },
+        {
+          text: "联系我们",
+          link: "/contact_us/index",
+        },
       ],
       com: null,
-      currentIndex: 0,
+      currentUrl: "/",
       typeArea: 1, //1 is text,2 is picture, 0 is nothing
       open: false,
     };
@@ -104,7 +182,22 @@ export default {
     reloadPage() {
       window.location.reload();
     },
-    editData(menu, index) {},
+    editData(menu, $event) {
+      //必须有link才允许跳转，将当前页面操作对象删除
+      if (menu.hasOwnProperty("link")) {
+        let menuClass = document.querySelectorAll(".menu_class");
+        for (let i = 0; i < menuClass.length; i++) {
+          menuClass[i].className = "menu_class";
+        }
+        $event.target.className = "menu_class active";
+        window.localStorage.setItem("currentOperateObj", "");
+        eventBus.$emit(
+          "currentIndex",
+          window.localStorage.getItem("currentOperateObj")
+        );
+        this.currentUrl = menu.link;
+      }
+    },
   },
   computed: {
     currentCom() {
@@ -122,8 +215,33 @@ export default {
       }
       return result;
     },
+    currentPageCom() {
+      const page = {
+        "/": "Home",
+        "/group/instruction": "GroupIns",
+        "/group/branch": "GroupBra",
+        "/group/devolp": "GroupDevolp",
+        "/group/distrubution": "GroupDis",
+        "/group/honor": "GroupHon",
+        "/group/company_feature": "GroupCom",
+        "/e_commerce/instruction": "EcommerceIns",
+        "/e_commerce/office": "EcommerceOff",
+        "/e_commerce/custome": "EcommerceCus",
+        "/e_commerce/brand": "EcommerceBra",
+        "/e_commerce/store": "EcommerceSto",
+        "/distrbution/contructor": "DisCon",
+        "/distrbution/env": "DisEnv",
+        "/mcn_celebrity": "McnCel",
+        "/oms_warehouse": "OmsWar",
+        "/bid_data_consult": "BidDc",
+        "/oms_news": "OmsNew",
+        "/contact_us/index": "ContactUs",
+      };
+      return page[this.currentUrl];
+    },
   },
   mounted() {
+    document.querySelectorAll(".menu_class")[0].className = "menu_class active";
     this.jsonContent = JSON.parse(window.localStorage.getItem("pageData"))[0];
   },
 };
@@ -176,8 +294,16 @@ export default {
     z-index: 100;
   }
 
+  .sub_menu {
+    margin-left: 1.25rem !important;
+
+    span {
+      font-size: 14px;
+    }
+  }
+
   .content_left {
-    width: 10rem;
+    width: auto;
     background: #1d2327;
     padding: 1.25rem;
 
@@ -185,11 +311,11 @@ export default {
       cursor: pointer;
       margin: 1.25rem 0;
 
-      &:hover {
+      span:hover {
         color: #2271b1;
       }
 
-      &.active {
+      .active {
         color: #2271b1;
       }
     }

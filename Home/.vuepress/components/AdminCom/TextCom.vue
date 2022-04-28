@@ -581,7 +581,7 @@ export default {
       background-color: rgba(109, 120, 130, 0.85) !important;
 
       &:after {
-        content: '选择图像';
+        content: '\9009\62e9\56fe\50cf';
         width: 100%;
         height: 20px;
         background: rgba(0, 0, 0, 0.2);

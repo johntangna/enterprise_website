@@ -3,7 +3,7 @@ export const pageData = {
         "arr": [{
             "type": 1,
             "video": "/video.mp4",
-            "show": "1"
+            "show": "0"
         }, {
             "type": 0,
             "contentImg": "/swiper1.jpg",
@@ -33,7 +33,7 @@ export const pageData = {
     "company_info": {
         "arr": [
             { "content": "创立于2014年,注册资金1亿元,现有员工500+。" },
-            { "content": "是江苏省股权交易所挂牌企业。总部设在江苏,在上海、北京、香港、淮安、灌云等地设立分公司" },
+            { "content": "是江苏省股权交易所挂牌企业。总部设在江苏,在上海、北京、香港、淮安、灌云、常州等地设立分公司" },
             { "content": "集团专注于电商运营服务商生态系统建设，业务涉及美妆个护、母婴、家居家纺、口腔健康、保健健康、食品、房地产等多个领域。为品牌公司、电商企业提供互联网一站式服务，是集电商营销、平台运营、人工与智能客服、网红孵化、智能化云仓、大数据服务、跨境电商与一体的综合性电子商务企业集团。经过多年的行业积淀及不断的探索创新，汇聚了一只强大而富有经验又极具高职业素养的专业团队。" },
             { "content": "先后获得江苏省“数字商务企业”、连云港市“十佳企业”、“示范单位”等多项荣誉，逐渐确立了电商服务业首屈一指的行业地位，是品牌商和渠道商值得信赖的合作伙伴。" }
         ]
@@ -207,6 +207,96 @@ export const pageData = {
             "link": "#"
         }],
         "title": "示意文案内容标题"
+    },
+    "swiperBgInstruction": {
+        "arr": [{
+            "type": 0,
+            "contentImg": "/instruction/instruction_swiper.jpg",
+            "show": "1"
+        }]
+    },
+    "swiperBgBranch": {
+        "arr": [{
+            "type": 0,
+            "contentImg": "/branch/branch_swiper.jpg",
+            "show": "1"
+        }],
+    },
+    "branchMap": {
+        "contentImg": "/branch/map.jpg",
+    },
+    "companyShowArr": {
+        "arr": [
+            { "contentImg": "/branch/1.jpg" },
+            { "contentImg": "/branch/2.jpg" },
+            { "contentImg": "/branch/3.jpg" },
+            { "contentImg": "/branch/4.jpg" },
+            { "contentImg": "/branch/5.jpg" },
+        ]
+    },
+    "swiperBgDevolp": {
+        "arr": [{
+            "type": 0,
+            "contentImg": "/devolp/devolp_swiper.jpg",
+            "show": "1"
+        }],
+    },
+    "timeLine": {
+        "contentImg": "/devolp/timeline.jpg",
+    },
+    "swiperBgIndustry": {
+        "arr": [{
+            "type": 0,
+            "contentImg": "/industry/industry_swiper.jpg",
+            "show": "1"
+        }],
+    },
+    "industry": {
+        "contentImg": "/industry/industry.jpg",
+    },
+    "swiperBgHonor": {
+        "arr": [{
+            "type": 0,
+            "contentImg": "/honor/honor_swiper.jpg",
+            "show": "1"
+        }],
+    },
+    "honorRecommed": {
+        "contentImg": "/honor/honor1.jpg"
+    },
+    "honorTrophy": {
+        "contentImg": "/honor/honor2.jpg"
+    },
+    "honorPrise": {
+        "arr": [
+            { "contentImg": "/honor/01.jpg" },
+            { "contentImg": "/honor/02.jpg" },
+            { "contentImg": "/honor/03.jpg" },
+            { "contentImg": "/honor/04.jpg" },
+            { "contentImg": "/honor/05.jpg" },
+            { "contentImg": "/honor/06.jpg" },
+            { "contentImg": "/honor/07.jpg" },
+            { "contentImg": "/honor/08.jpg" },
+        ],
+        "title": "运营与营销能力获各大平台大奖"
+    },
+    "swiperBgCulture": {
+        "arr": [{
+            "type": 0,
+            "contentImg": "/enterprise_culture/culture_swiper1.jpg",
+            "show": "1"
+        }],
+    },
+    "culture_core": {
+        "contentImg": "/enterprise_culture/culture2.jpg"
+    },
+    "culture_corner": {
+        "arr": [
+            { "contentImg": "/enterprise_culture/culture3.png" },
+            { "contentImg": "/enterprise_culture/culture4.png" },
+            { "contentImg": "/enterprise_culture/culture5.png" },
+            { "contentImg": "/enterprise_culture/culture6.png" },
+        ],
     },
     "companyInfo": {
         "content": "欢迎咨询，我们将竭力为你服务！",

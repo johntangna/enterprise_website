@@ -5,7 +5,7 @@
       class="area_title customer_color customer_font_size"
       v-html="content"
     ></span>
-    <div class="flex_row flex_wrap_c">
+    <div class="grid_c_r grid_5r grid_4c grid_gap15">
       <div class="customer" v-for="(item, index) in parternArr" :key="index">
         <img :src="item.contentImg" alt="" />
       </div>
@@ -50,10 +50,6 @@ export default {
 
 <style lang="stylus" scoped>
 .customer {
-  &:nth-child(n + 5) {
-    margin-top: 30px;
-  }
-
   &:hover {
     transform: scale3d(1.1, 1.1, 1.1);
     transition: all 0.2s;

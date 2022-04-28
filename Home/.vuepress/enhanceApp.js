@@ -5,6 +5,7 @@
 // import "Swiper.css";
 import VueAMap from "vue-amap";
 import { getJsonContent } from "../request.js"
+const time = null
 export default async({ Vue, options, router, siteData, isServer }) => {
     if (!isServer) {
         getJsonContent().finally(() => {
@@ -19,6 +20,18 @@ export default async({ Vue, options, router, siteData, isServer }) => {
             })
         })
         Vue.use(VueAMap)
+        let temp = document.querySelectorAll(".nav-link")
+        for (let i = 0; i < temp.length; i++) {
+            temp[i].addEventListener("click", () => {
+                if (time) {
+                    clearTimeout(time)
+                    time = null
+                }
+                time = setTimeout(() => {
+                    window.location.reload()
+                }, 500);
+            })
+        }
     }
     // Vue.mixin({
     //     mounted() {

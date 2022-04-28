@@ -2,7 +2,7 @@
   <div>
     <ul class="ul_class">
       <li v-for="(item, index) in company_info" :key="index">
-        {{ item.content }}
+        <span v-html="item.content"></span>
       </li>
     </ul>
   </div>
