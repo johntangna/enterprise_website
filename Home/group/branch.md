@@ -7,7 +7,7 @@
 </div>
 
 <div class="content_exhibit">
-  <div class="main_padding" style="padding:0">
+  <div class="main_padding" style="padding:0 !important">
   <div class="area_content">
     <branch-map></branch-map>
   </div>
