@@ -7,7 +7,7 @@
       return {
         username: "",
         password: "",
-        loading: false,
+        loading: true,
         setIt: null,
         disabled: false
       }

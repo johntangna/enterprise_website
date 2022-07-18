@@ -393,6 +393,15 @@
               "
             ></text-area-com>
           </div>
+          <div v-if="item.heartExternalAddress || item.heartExternalAddress == ''">
+            <div class="text">地址</div>
+            <text-area-com
+              :rows="2"
+              :content.sync="
+                pageData[currentObjectString].arr[index].heartExternalAddress
+              "
+            ></text-area-com>
+          </div>
         </div>
       </div>
     </div>

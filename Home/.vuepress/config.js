@@ -47,7 +47,7 @@ module.exports = {
             { text: "MCN网红经纪", link: "/mcn_celebrity" },
             { text: "欧美斯云仓", link: "/oms_warehouse" },
             { text: "大数据咨询", link: "/bid_data_consult" },
-            { text: "欧美斯动态(新闻中心)", link: "/oms_news" },
+            { text: "欧美斯动态（新闻中心）", link: "/oms_news" },
             {
                 text: "联系我们",
                 link: "/contact_us/index"

@@ -16,6 +16,10 @@
             <img :src="item.heartAddressImg" alt="" />
             <span> {{ item.heartAddress }}</span>
           </div>
+          <div v-if="index == 0">
+            <img :src="item.heartAddressImg" alt="" />
+            <span> {{ item.heartExternalAddress }}</span>
+          </div>
         </div>
       </div>
       <!-- <div class="fontColor" v-html="companyInfo.content"></div> -->
@@ -71,7 +75,6 @@ export default {
 <style lang="stylus" scoped>
 .flex_row {
   font-size: 18px;
-  font-weight: 700;
   color: #333333;
 
   > div {

@@ -22,7 +22,7 @@
             :offset="offset"
           ></el-amap-marker>
         </el-amap>
-        <div class="linear_gradient">
+        <div class="linear_gradient" :title="leftContent">
           <span>{{ leftContent }}</span>
         </div>
       </div>
@@ -35,12 +35,28 @@
         >
           <el-amap-marker
             :position="position2"
-            :title="rightContent"
+            :title="centerContent"
             :icon="'../marker.png'"
             :offset="offset2"
           ></el-amap-marker>
         </el-amap>
-        <div class="linear_gradient">{{ rightContent }}</div>
+        <div class="linear_gradient" :title="centerContent">{{ centerContent }}</div>
+      </div>
+      <div class="map">
+        <el-amap
+          class="amap-box"
+          :vid="'amap-vue3'"
+          :center="center3"
+          :zooms="zooms3"
+        >
+          <el-amap-marker
+            :position="position3"
+            :title="rightContent"
+            :icon="'../marker.png'"
+            :offset="offset3"
+          ></el-amap-marker>
+        </el-amap>
+        <div class="linear_gradient" :title="rightContent">{{ rightContent }}</div>
       </div>
     </div>
   </div>
@@ -73,14 +89,19 @@ export default {
       submit: false,
       center: [],
       center2: [],
+      center3: [],
       position: [],
       position2: [],
+      position3: [],
       offset: [-35, -60],
       offset2: [-35, -60],
+      offset3: [-35, -60],
       zooms: [14, 19],
       zooms2: [14, 19],
+      zooms3: [14, 19],
       title: "",
       leftContent: "",
+      centerContent: "",
       rightContent: "",
     };
   },
@@ -110,6 +131,7 @@ export default {
     updateData(data) {
       this.title = data.title;
       this.leftContent = data.leftContent;
+      this.centerContent = data.centerContent;
       this.rightContent = data.rightContent;
     },
   },
@@ -117,8 +139,10 @@ export default {
     this.updateData(this.pageData.contactUs);
     this.center = [119.177538, 34.604303];
     this.center2 = [121.48209, 31.232879];
+    this.center3 = [116.509957, 39.795143];
     this.position = [119.177538, 34.604303];
     this.position2 = [121.48209, 31.232879];
+    this.position3 = [116.509957, 39.795143];
     try {
       VueAMap.initAMapApiLoader({
         key: "3056e7967382c1e7a8baded08f3969b3",
@@ -177,8 +201,8 @@ export default {
 }
 
 .map {
-  width: 39.5rem;
-  height: 17.75rem;
+  width: 33.5rem;
+  height: 15.75rem;
   background: #fff;
   padding: 0.5rem;
   box-shadow: 0px 0px 10px 0px #c3c3c3;
@@ -186,12 +210,17 @@ export default {
 
 .linear_gradient {
   background-image: linear-gradient(to right, #06abfb, #00a1fd, #0096fd, #008bfc, #0e7ffa);
-  padding: 10px 3.125rem;
+  padding: 10px 2.125rem;
   color: #fff;
   font-size: 17px;
   display: inline-block;
   margin-top: 33px;
   border-radius: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 ::v-deep .amap-logo, ::v-deep .amap-copyright {

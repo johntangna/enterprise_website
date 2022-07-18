@@ -31,7 +31,7 @@
 </div>
 
 <div class="content_exhibit" style="background:url('/map_bg.png');background-size:100% 100%">
-  <div class="main_padding" style="padding:6rem 12rem 6.2rem">
+  <div class="main_padding mapInstance" style="padding:6rem 4rem 6.2rem">
   <div class="area_content">
     <contact-us></contact-us>
   </div>
