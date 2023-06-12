@@ -204,6 +204,7 @@ export const pageData = {
       { contentImg: "/partern_brand_new/品牌_155.jpg" },
       { contentImg: "/partern_brand_new/品牌_157.jpg" },
       { contentImg: "/partern_brand_new/品牌_159.jpg" },
+      { contentImg: "/partern_brand_new/11.jpg" },
     ],
     title: '合作的品牌',
     content:
